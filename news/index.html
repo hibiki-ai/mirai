@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9501</span>
       </span>
     </div>
 
@@ -54,7 +54,31 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.4.1.9000" id="mirai-0419000">mirai 0.4.1.9000<a class="anchor" aria-label="anchor" href="#mirai-0419000"></a></h2>
+<h2 class="page-header" data-toc-text="0.6.0.9501" id="mirai-0609501-development">mirai 0.6.0.9501 (development)<a class="anchor" aria-label="anchor" href="#mirai-0609501-development"></a></h2>
+<ul><li>
+<code><a href="../reference/daemons.html">daemons()</a></code> now takes ‘n’ and ‘.url’ arguments. ‘.url’ is a custom client URL allowing mirai tasks to be distributed across networks. Compatibility with previous interface is maintained.</li>
+<li>The server function <code><a href="../reference/dot-.html">.()</a></code> is exported for creating daemon or ephemeral processes on network resources.</li>
+<li>Improvements to performance and stability requiring nanonext &gt;= 0.6.0.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.6.0" id="mirai-060">mirai 0.6.0<small>2022-09-16</small><a class="anchor" aria-label="anchor" href="#mirai-060"></a></h2>
+<ul><li>Notice: older package versions will no longer be supported by ‘nanonext’ &gt;= 0.6.0. Please ensure you are using the latest version of ‘mirai’ or else refrain from upgrading ‘nanonext’.</li>
+<li>Internal enhancements to <code><a href="../reference/daemons.html">daemons()</a></code> and <code>%&gt;&gt;%</code> deferred evaluation pipe.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.5.3" id="mirai-053">mirai 0.5.3<small>2022-08-16</small><a class="anchor" aria-label="anchor" href="#mirai-053"></a></h2>
+<ul><li>
+<code><a href="../reference/eval_mirai.html">mirai()</a></code> gains a ‘.args’ argument for passing a list of objects already in the calling environment, allowing for example <code>mirai(func(x, y, z), .args = list(x, y, z))</code> rather than having to specify <code>mirai(func(x, y, z), x = x, y = y, z = z)</code>.</li>
+<li>Errors from inside a mirai will now return the error message as a character string of class ‘miraiError’ and ‘errorValue’, rather than just a nul byte. Utility function <code><a href="../reference/is_mirai_error.html">is_mirai_error()</a></code> should be used in place of <code>is_nul_byte()</code>, which is no longer re-exported.</li>
+<li>
+<code><a href="../reference/is_error_value.html">is_error_value()</a></code> can be used to test for all errors, including timeouts where the ‘.timeout’ argument has been used.</li>
+<li>All re-exports from ‘nanonext’ have been brought in-package for better documentation.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.5.2" id="mirai-052">mirai 0.5.2<small>2022-07-21</small><a class="anchor" aria-label="anchor" href="#mirai-052"></a></h2>
+<ul><li>Internal optimisations requiring nanonext &gt;= 0.5.2.</li></ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.5.0" id="mirai-050">mirai 0.5.0<small>2022-06-21</small><a class="anchor" aria-label="anchor" href="#mirai-050"></a></h2>
 <ul><li>Implements the <code>%&gt;&gt;%</code> deferred evaluation pipe.</li>
 <li>Adds ‘.timeout’ argument to <code><a href="../reference/eval_mirai.html">mirai()</a></code> to ensure a mirai always resolves even if the child process crashes etc.</li>
 </ul></div>
@@ -82,7 +106,7 @@
 <li>A mirai now resolves automatically without requiring <code><a href="../reference/call_mirai.html">call_mirai()</a></code>. Access the <code>$value</code> directly and an ‘unresolved’ logical NA will be returned if the async operation is yet to complete.</li>
 <li>
 <code><a href="../reference/stop_mirai.html">stop_mirai()</a></code> added as a function to stop evaluation of an ongoing async operation.</li>
-<li>Auxiliary functions <code><a href="https://shikokuchuo.net/nanonext/reference/is_nul_byte.html" class="external-link">is_nul_byte()</a></code> and <code><a href="https://shikokuchuo.net/nanonext/reference/unresolved.html" class="external-link">unresolved()</a></code> re-exported from {nanonext} to test for evaluation errors and resolution of a ‘mirai’ respectively.</li>
+<li>Auxiliary functions <code>is_nul_byte()</code> and <code><a href="../reference/unresolved.html">unresolved()</a></code> re-exported from {nanonext} to test for evaluation errors and resolution of a ‘mirai’ respectively.</li>
 <li>New <code><a href="../reference/daemons.html">daemons()</a></code> interface to set and manage persistent background processes for receiving ‘mirai’ requests.</li>
 </ul></div>
     <div class="section level2">
@@ -102,7 +126,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
