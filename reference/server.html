@@ -19,7 +19,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0.9500</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0.9600</span>
       </span>
     </div>
 
@@ -89,9 +89,10 @@ ephemeral process.</p></dd>
     
 
 
-<p>The network topology is such that server daemons dial into the client
-    socket. In this way, network resources may be easily added or removed at
-    any time.</p>
+<p>The network topology is such that server daemons dial into the client,
+    which listens at the '.url' address. In this way, network resources may
+    be added or removed at any time and the client automatically distributes
+    tasks to all available servers.</p>
     </div>
 
   </div>
