@@ -19,7 +19,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.2.9028</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.2.9032</span>
       </span>
     </div>
 
@@ -66,13 +66,15 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">server</span><span class="op">(</span></span>
 <span>  <span class="va">url</span>,</span>
 <span>  nodes <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  asyncdial <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  maxtasks <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  idletime <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  walltime <span class="op">=</span> <span class="cn">Inf</span>,</span>
-<span>  tasklimit <span class="op">=</span> <span class="cn">Inf</span>,</span>
-<span>  asyncdial <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  <span class="va">...</span>,</span>
+<span>  timerstart <span class="op">=</span> <span class="fl">0L</span>,</span>
+<span>  exitdelay <span class="op">=</span> <span class="fl">100L</span>,</span>
 <span>  pollfreqh <span class="op">=</span> <span class="fl">5L</span>,</span>
-<span>  pollfreql <span class="op">=</span> <span class="fl">50L</span></span>
+<span>  pollfreql <span class="op">=</span> <span class="fl">50L</span>,</span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -89,6 +91,21 @@ connect to and (optionally) a path for websocket URLs e.g.
 active queue (task scheduler) with the specified number of nodes.</p></dd>
 
 
+<dt>asyncdial</dt>
+<dd><p>[default TRUE] whether to dial in to the client
+asynchronously. An asynchronous dial is more resilient and will continue
+retrying if not immediately successful. However this can mask potential
+connection issues and specifying FALSE is useful for debugging purposes,
+producing an error if a connection is not immediately possible (e.g.
+<code><a href="daemons.html">daemons</a></code> has yet to be called on the client, or the
+specified port is not open etc.).</p></dd>
+
+
+<dt>maxtasks</dt>
+<dd><p>[default Inf] the maximum number of tasks to execute (task
+limit) before exiting.</p></dd>
+
+
 <dt>idletime</dt>
 <dd><p>[default Inf] maximum idle time, since completion of the last
 task (in milliseconds) before exiting.</p></dd>
@@ -99,36 +116,37 @@ task (in milliseconds) before exiting.</p></dd>
 time taken (in milliseconds) before exiting.</p></dd>
 
 
-<dt>tasklimit</dt>
-<dd><p>[default Inf] the maximum number of tasks to execute (task
-limit) before exiting.</p></dd>
+<dt>timerstart</dt>
+<dd><p>[default 0L] (applicable to individual server / node
+instances only) number of completed tasks after which to start the timer
+for 'idletime' and 'walltime'. 0L implies timers are started upon launch.</p></dd>
 
 
-<dt>asyncdial</dt>
-<dd><p>[default TRUE] (for debugging purposes) whether to dial in
-to the client asynchronously. An asynchronous dial is more resilient and
-will continue retrying if not immediately successful, however this can
-mask potential connection issues. If FALSE, will error if a connection is
-not immediately possible (e.g. <code><a href="daemons.html">daemons</a></code> has yet to be called
-on the client, or the specified port is not open etc.).</p></dd>
-
-
-<dt>...</dt>
-<dd><p>reserved but not currently used.</p></dd>
+<dt>exitdelay</dt>
+<dd><p>[default 100L] time in milliseconds to wait after an exit
+signal is received or a timer / task limit is reached, to allow sockets
+to finish sends currently in progress. The default permits normal
+operations, but if timers / task limits are in force and computations are
+expected to return very large objects, this should be set wider to ensure
+results are sent before exiting.</p></dd>
 
 
 <dt>pollfreqh</dt>
-<dd><p>[default 5L] applicable for an active queue only, the high
+<dd><p>[default 5L] (applicable to active queues only) the high
 polling frequency for the queue in milliseconds (used when there are
 active tasks). Setting a lower value will be more responsive but at the
 cost of consuming more resources on the queue thread.</p></dd>
 
 
 <dt>pollfreql</dt>
-<dd><p>[default 50L] applicable for an active queue only, the low
+<dd><p>[default 50L] (applicable to active queues only) the low
 polling frequency for the queue in milliseconds (used when there are no
 active tasks). Setting a lower value will be more responsive but at the
 cost of consuming more resources on the queue thread.</p></dd>
+
+
+<dt>...</dt>
+<dd><p>reserved but not currently used.</p></dd>
 
 </dl></div>
     <div id="value">
