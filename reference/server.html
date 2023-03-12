@@ -19,7 +19,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.2.9032</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.2.9041</span>
       </span>
     </div>
 
@@ -65,40 +65,32 @@
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">server</span><span class="op">(</span></span>
 <span>  <span class="va">url</span>,</span>
-<span>  nodes <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  asyncdial <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  maxtasks <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  idletime <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  walltime <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  timerstart <span class="op">=</span> <span class="fl">0L</span>,</span>
-<span>  exitdelay <span class="op">=</span> <span class="fl">100L</span>,</span>
-<span>  pollfreqh <span class="op">=</span> <span class="fl">5L</span>,</span>
-<span>  pollfreql <span class="op">=</span> <span class="fl">50L</span>,</span>
-<span>  <span class="va">...</span></span>
+<span>  exitlinger <span class="op">=</span> <span class="fl">100L</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  cleanup <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>url</dt>
-<dd><p>the client URL as a character string, including the port to
-connect to and (optionally) a path for websocket URLs e.g.
-'tcp://192.168.0.2:5555' or 'ws://192.168.0.2:5555/path'.</p></dd>
-
-
-<dt>nodes</dt>
-<dd><p>[default NULL] if supplied, this server instance will run as an
-active queue (task scheduler) with the specified number of nodes.</p></dd>
+<dd><p>the client or dispatcher URL to dial into as a character string,
+including the port to connect to and (optionally) a path for websocket
+URLs e.g. 'tcp://192.168.0.2:5555' or 'ws://192.168.0.2:5555/path'.</p></dd>
 
 
 <dt>asyncdial</dt>
-<dd><p>[default TRUE] whether to dial in to the client
-asynchronously. An asynchronous dial is more resilient and will continue
-retrying if not immediately successful. However this can mask potential
-connection issues and specifying FALSE is useful for debugging purposes,
-producing an error if a connection is not immediately possible (e.g.
-<code><a href="daemons.html">daemons</a></code> has yet to be called on the client, or the
-specified port is not open etc.).</p></dd>
+<dd><p>[default TRUE] whether to perform dials asynchronously. An
+asynchronous dial is more resilient and will continue retrying if not
+immediately successful. However this can mask potential connection issues
+and specifying FALSE will error if a connection is not immediately
+possible (e.g. <code><a href="daemons.html">daemons</a></code> has yet to be called on the client,
+or the specified port is not open etc.).</p></dd>
 
 
 <dt>maxtasks</dt>
@@ -117,36 +109,28 @@ time taken (in milliseconds) before exiting.</p></dd>
 
 
 <dt>timerstart</dt>
-<dd><p>[default 0L] (applicable to individual server / node
-instances only) number of completed tasks after which to start the timer
-for 'idletime' and 'walltime'. 0L implies timers are started upon launch.</p></dd>
+<dd><p>[default 0L] number of completed tasks after which to start
+the timer for 'idletime' and 'walltime'. 0L implies timers are started
+upon launch.</p></dd>
 
 
-<dt>exitdelay</dt>
-<dd><p>[default 100L] time in milliseconds to wait after an exit
+<dt>exitlinger</dt>
+<dd><p>[default 100L] time in milliseconds to linger after an exit
 signal is received or a timer / task limit is reached, to allow sockets
-to finish sends currently in progress. The default permits normal
-operations, but if timers / task limits are in force and computations are
-expected to return very large objects, this should be set wider to ensure
-results are sent before exiting.</p></dd>
-
-
-<dt>pollfreqh</dt>
-<dd><p>[default 5L] (applicable to active queues only) the high
-polling frequency for the queue in milliseconds (used when there are
-active tasks). Setting a lower value will be more responsive but at the
-cost of consuming more resources on the queue thread.</p></dd>
-
-
-<dt>pollfreql</dt>
-<dd><p>[default 50L] (applicable to active queues only) the low
-polling frequency for the queue in milliseconds (used when there are no
-active tasks). Setting a lower value will be more responsive but at the
-cost of consuming more resources on the queue thread.</p></dd>
+to flush sends currently in progress. The default permits normal
+operations, but should be set wider if computations are expected to
+return very large objects.</p></dd>
 
 
 <dt>...</dt>
 <dd><p>reserved but not currently used.</p></dd>
+
+
+<dt>cleanup</dt>
+<dd><p>[default TRUE] logical value whether to perform cleanup of the
+global environment, options values and loaded packages after each task
+evaluation. This option should not be modified. Do not set to FALSE
+unless you are certain you want such persistence across evaluations.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -158,14 +142,9 @@ cost of consuming more resources on the queue thread.</p></dd>
     <div id="details">
     <h2>Details</h2>
     <p>The network topology is such that server daemons dial into the
-    client, which listens at the '.url' address. In this way, network
-    resources may be easily added or removed at any time and the client
-    automatically distributes tasks to all available servers.</p>
-<p>If 'nodes' is supplied, this daemon is launched as an active server queue,
-    directing a cluster with the specified number of nodes. The nodes are
-    launched automatically as processes on the same machine.</p>
-<p>An active server queue may be used in combination with other servers or
-    server queues.</p>
+    client or dispatcher, which listens at the 'url' address. In this way,
+    network resources may be added or removed dynamically and the client or
+    dispatcher automatically distributes tasks to all available servers.</p>
     </div>
 
   </div>
