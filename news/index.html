@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.2.9012</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.2.9021</span>
       </span>
     </div>
 
@@ -54,9 +54,9 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.8.2.9012" id="mirai-0829012-development">mirai 0.8.2.9012 (development)<a class="anchor" aria-label="anchor" href="#mirai-0829012-development"></a></h2>
+<h2 class="page-header" data-toc-text="0.8.2.9021" id="mirai-0829021-development">mirai 0.8.2.9021 (development)<a class="anchor" aria-label="anchor" href="#mirai-0829021-development"></a></h2>
 <ul><li>
-<code><a href="../reference/mirai.html">mirai()</a></code> now accepts a language object as ‘.expr’, which will be evaluated directly.</li>
+<code><a href="../reference/mirai.html">mirai()</a></code> now accepts a language or expression object being passed to ‘.expr’ for evaluation (thanks <a href="https://github.com/HenrikBengtsson" class="external-link">@HenrikBengtsson</a>).</li>
 <li>
 <code><a href="../reference/dispatcher.html">dispatcher()</a></code> gains the following arguments:
 <ul><li>
@@ -66,7 +66,9 @@
 </ul></li>
 <li>
 <code><a href="../reference/saisei.html">saisei()</a></code> implemented to regenerate the token used by a given dispatcher socket.</li>
-<li>Local IPC socket URLs revised to use unique tokens.</li>
+<li>
+<code><a href="../reference/launch_server.html">launch_server()</a></code> replaces <code>launch()</code> for launching local instances, with a simpler interface directly mapping to <code><a href="../reference/server.html">server()</a></code>.</li>
+<li>Automatically-launched local daemons revised to use unique tokens in their URLs.</li>
 <li>Daemons status matrix headers updated to ‘online’, ‘instance’, ‘assigned’, and ‘complete’.</li>
 <li>Requires nanonext &gt;= [0.8.2].</li>
 <li>Internal performance enhancements.</li>
@@ -79,7 +81,7 @@
 </ul></li>
 <li>Server and dispatcher processes exit automatically if the connection with the client is dropped. This significantly reduces the likelihood of orphaned processes.</li>
 <li>
-<code><a href="../reference/launch.html">launch()</a></code> exported as a utility for easily re-launching daemons that have timed out, for instance.</li>
+<code>launch()</code> exported as a utility for easily re-launching daemons that have timed out, for instance.</li>
 <li>Correct passthrough of <code>...</code> variables in the <code><a href="../reference/daemons.html">daemons()</a></code> call.</li>
 <li>Requires nanonext &gt;= 0.8.1.</li>
 <li>Internal performance enhancements.</li>
