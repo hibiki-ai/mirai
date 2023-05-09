@@ -18,7 +18,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.3.9021</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.4.9000</span>
       </span>
     </div>
 
@@ -67,7 +67,7 @@
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>i</dt>
-<dd><p>integer <code>i</code>th URL to replace.</p></dd>
+<dd><p>[default 1L] integer <code>i</code>th URL to replace.</p></dd>
 
 
 <dt>force</dt>
@@ -76,15 +76,16 @@ even when there is an existing connection.</p></dd>
 
 
 <dt>.compute</dt>
-<dd><p>(optional) character compute profile to use (each compute
-profile has its own set of daemons for connecting to different resources).</p></dd>
+<dd><p>[default 'default'] character compute profile to use (each
+compute profile has its own set of daemons for connecting to different
+resources).</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     
 
-<p>The regenerated character URL upon success, or else invisible NULL.</p>
+<p>The regenerated character URL upon success, or else NULL.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -99,9 +100,10 @@ profile has its own set of daemons for connecting to different resources).</p></
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="co"># Only run examples in interactive R sessions</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="daemons.html">daemons</a></span><span class="op">(</span><span class="fl">1</span>, token <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="daemons.html">daemons</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="daemons.html">daemons</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">saisei</span><span class="op">(</span>i <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">saisei</span><span class="op">(</span>i <span class="op">=</span> <span class="fl">1L</span>, force <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="daemons.html">daemons</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="daemons.html">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></span>
