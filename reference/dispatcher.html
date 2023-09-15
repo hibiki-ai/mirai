@@ -18,7 +18,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9.1.9025</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9.1.9035</span>
       </span>
     </div>
 
@@ -69,6 +69,7 @@
 <span>  token <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  lock <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  tls <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  pass <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span>,</span>
 <span>  monitor <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  rs <span class="op">=</span> <span class="cn">NULL</span></span>
@@ -78,9 +79,9 @@
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>host</dt>
-<dd><p>the host URL to dial as a character string (where tasks are
-sent from), including the port to connect to (and optionally for
-websockets, a path), e.g. 'tcp://192.168.0.2:5555' or 'ws://192.168.0.2:5555/path'.</p></dd>
+<dd><p>the character host URL to dial (where tasks are sent from),
+including the port to connect to (and optionally for websockets, a path),
+e.g. 'tcp://192.168.0.2:5555' or 'ws://192.168.0.2:5555/path'.</p></dd>
 
 
 <dt>url</dt>
@@ -122,12 +123,18 @@ against more than one daemon attempting to connect to a unique URL.</p></dd>
 
 <dt>tls</dt>
 <dd><p>[default NULL] (required for secure TLS connections) <strong>either</strong>
-the character path to a file containing the PEM encoded certificate and
-associated private key (may contain additional certificates leading to a
-validation chain, with the leaf certificate first, although the
-self-signed root is not required as the daemon should already have this),
-<strong>or</strong> a length 2 character vector comprising [i] the certificate
-(optionally certificate chain) and [ii] the associated private key.</p></dd>
+the character path to a file containing the PEM-encoded TLS certificate
+and associated private key (may contain additional certificates leading
+to a validation chain, with the TLS certificate first), <strong>or</strong> a
+length 2 character vector comprising [i] the TLS certificate (optionally
+certificate chain) and [ii] the associated private key.</p></dd>
+
+
+<dt>pass</dt>
+<dd><p>[default NULL] (required only if the private key supplied to 'tls'
+is encrypted with a password) For security, should be provided through a
+function that returns this value, rather than directly. (Do not specify
+if launching dispatcher via <code><a href="daemons.html">daemons</a></code>).</p></dd>
 
 
 <dt>...</dt>
