@@ -10,6 +10,12 @@
     <loc>https://shikokuchuo.net/mirai/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://shikokuchuo.net/mirai/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://shikokuchuo.net/mirai/articles/reference.html</loc>
+  </url>
+  <url>
     <loc>https://shikokuchuo.net/mirai/authors.html</loc>
   </url>
   <url>
@@ -59,6 +65,9 @@
   </url>
   <url>
     <loc>https://shikokuchuo.net/mirai/reference/nextstream.html</loc>
+  </url>
+  <url>
+    <loc>https://shikokuchuo.net/mirai/reference/remote_config.html</loc>
   </url>
   <url>
     <loc>https://shikokuchuo.net/mirai/reference/saisei.html</loc>

@@ -22,7 +22,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.0.9015</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.0</span>
       </span>
     </div>
 
@@ -30,6 +30,16 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/reference.html">mirai - Reference Manual</a>
+    </li>
+  </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -78,19 +88,24 @@
     communications is platform-dependent: abstract Unix domain sockets on
     Linux, Unix domain sockets on MacOS, Solaris and other POSIX platforms,
     and named pipes on Windows.</p>
-<p>This may be overriden, if required, by specifying 'url' in the
+<p>This may be overriden, if desired, by specifying 'url' in the
     <code><a href="daemons.html">daemons</a></code> interface and launching daemons using
     <code><a href="launch_local.html">launch_local</a></code>.</p>
+    </div>
+    <div id="reference-manual">
+    <h2>Reference Manual</h2>
+    
+
+
+<p><code><a href="../articles/reference.html">vignette("reference", package = "mirai")</a></code></p>
     </div>
     <div id="links">
     <h2>Links</h2>
     
 
 
-<p>mirai website: <a href="https://shikokuchuo.net/mirai/">https://shikokuchuo.net/mirai/</a><br>
-    mirai on CRAN: <a href="https://cran.r-project.org/package=mirai" class="external-link">https://cran.r-project.org/package=mirai</a></p>
-<p>nanonext website: <a href="https://shikokuchuo.net/nanonext/" class="external-link">https://shikokuchuo.net/nanonext/</a><br>
-    nanonext on CRAN: <a href="https://cran.r-project.org/package=nanonext" class="external-link">https://cran.r-project.org/package=nanonext</a></p>
+<p><a href="https://CRAN.R-project.org/package=mirai" class="external-link"><span class="pkg">mirai</span></a> website: <a href="https://shikokuchuo.net/mirai/">https://shikokuchuo.net/mirai/</a></p>
+<p><a href="https://CRAN.R-project.org/package=nanonext" class="external-link"><span class="pkg">nanonext</span></a> website: <a href="https://shikokuchuo.net/nanonext/" class="external-link">https://shikokuchuo.net/nanonext/</a></p>
 <p>NNG website: <a href="https://nng.nanomsg.org/" class="external-link">https://nng.nanomsg.org/</a></p>
     </div>
     <div id="author">
