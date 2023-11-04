@@ -17,24 +17,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li>
+  <a href="../articles/mirai.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/reference.html">mirai - Reference Manual</a>
-    </li>
-  </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -64,7 +57,29 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.11.0" id="mirai-0110">mirai 0.11.0<a class="anchor" aria-label="anchor" href="#mirai-0110"></a></h2>
+<h2 class="page-header" data-toc-text="0.11.1" id="mirai-0111">mirai 0.11.1<a class="anchor" aria-label="anchor" href="#mirai-0111"></a></h2>
+<ul><li>Adds ‘mirai’ method for ‘as.promise()’ from the {promises} package (if available). This functionality is merged from the package {mirai.promises}, allowing use of the promise pipe <code>%...&gt;%</code> with a ‘mirai’.</li>
+<li>Parallel clusters (the alternative communications backend for R) now work with existing R versions, no longer requiring R &gt;= 4.4.</li>
+<li>
+<code><a href="../reference/everywhere.html">everywhere()</a></code> evaluates an expression ‘everywhere’ on all connected daemons for a compute profile. Resulting changes to the global environment, loaded pacakges or options are persisted regardless of the ‘cleanup’ setting (request by <a href="https://github.com/krlmlr" class="external-link">@krlmlr</a> <a href="https://github.com/shikokuchuo/mirai/issues/80" class="external-link">#80</a>).</li>
+<li>
+<code><a href="../reference/host_url.html">host_url()</a></code> implemented as a helper function to automatically construct the host URL using the computer’s hostname.</li>
+<li>
+<code><a href="../reference/daemon.html">daemon()</a></code> adds argument ‘autoexit’, which replaces ‘asyncdial’, to govern persistence settings for a daemon. A daemon can now survive a host session and re-connect to another one (request by <a href="https://github.com/krlmlr" class="external-link">@krlmlr</a> <a href="https://github.com/shikokuchuo/mirai/issues/81" class="external-link">#81</a>).</li>
+<li>
+<code>daemons(NULL)</code> implemented as a variant of <code>daemons(0)</code> which also sends exit signals to connected persistent daemons.</li>
+<li>
+<code><a href="../reference/dispatcher.html">dispatcher()</a></code> argument ‘lock’ removed as this is now applied in all cases to prevent more than one daemon dialling into a dispatcher URL at any one time.</li>
+<li>
+<code><a href="../reference/daemon.html">daemon()</a></code> argument ‘cleanup’ simplified to a logical argument, with more granular control offered by the existing integer bitmask (thanks <a href="https://github.com/krlmlr" class="external-link">@krlmlr</a> <a href="https://github.com/shikokuchuo/mirai/issues/79" class="external-link">#79</a>).</li>
+<li>Daemons connecting over TLS now perform synchronous dials by default (as documented).</li>
+<li>Fixes supplying an <code><a href="../reference/remote_config.html">ssh_config()</a></code> specifying tunnelling to the ‘remote’ argument of <code><a href="../reference/daemons.html">daemons()</a></code>.</li>
+<li>Fixes the print method for a subset ‘miraiCluster’ (thanks <a href="https://github.com/HenrikBengtsson" class="external-link">@HenrikBengtsson</a> <a href="https://github.com/shikokuchuo/mirai/issues/83" class="external-link">#83</a>).</li>
+<li>Removes the deprecated deferred evaluation pipe <code>%&gt;&gt;%</code>.</li>
+<li>Requires nanonext &gt;= 0.10.4.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.11.0" id="mirai-0110">mirai 0.11.0<small>2023-10-06</small><a class="anchor" aria-label="anchor" href="#mirai-0110"></a></h2>
 <ul><li>Implements an alternative communications backend for R, adding methods for the ‘parallel’ base package.
 <ul><li>Fulfils a request by R Core at R Project Sprint 2023, and requires R &gt;= 4.4 (currently R-devel).</li>
 <li>
@@ -186,7 +201,7 @@
 <h2 class="page-header" data-toc-text="0.8.4" id="mirai-084">mirai 0.8.4<small>2023-05-09</small><a class="anchor" aria-label="anchor" href="#mirai-084"></a></h2>
 <ul><li>The deferred evaluation pipe <code>%&gt;&gt;%</code> gains the following enhancements:
 <ul><li>
-<code><a href="../reference/deferred-execution-pipe.html">.()</a></code> implemented to wrap a piped expression, ensuring return of either an ‘unresolvedExpr’ or ‘resolvedExpr’.</li>
+<code>.()</code> implemented to wrap a piped expression, ensuring return of either an ‘unresolvedExpr’ or ‘resolvedExpr’.</li>
 <li>expressions may be tested using <code><a href="../reference/unresolved.html">unresolved()</a></code> in the same way as a ‘mirai’.</li>
 <li>allows for general use in all contexts, including within functions.</li>
 </ul></li>

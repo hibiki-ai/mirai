@@ -17,24 +17,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li>
+  <a href="../articles/mirai.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/reference.html">mirai - Reference Manual</a>
-    </li>
-  </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -69,7 +62,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.daemon</span><span class="op">(</span><span class="va">url</span>, exitlinger <span class="op">=</span> <span class="fl">2000L</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.daemon</span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -77,12 +70,7 @@
     <dl><dt>url</dt>
 <dd><p>the character host or dispatcher URL to dial into, including the
 port to connect to (and optionally for websockets, a path), e.g.
-'tcp://10.75.32.70:5555' or 'ws://10.75.32.70:5555/path'.</p></dd>
-
-
-<dt>exitlinger</dt>
-<dd><p>[default 2000L] time in milliseconds to linger before
-exiting to allow the socket to complete sends currently in progress.</p></dd>
+'tcp://hostname:5555' or 'ws://10.75.32.70:5555/path'.</p></dd>
 
 </dl></div>
     <div id="value">

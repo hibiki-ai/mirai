@@ -22,24 +22,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li>
+  <a href="../articles/mirai.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/reference.html">mirai - Reference Manual</a>
-    </li>
-  </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -85,10 +78,10 @@
 <span>  remote <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  dispatcher <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  <span class="va">...</span>,</span>
+<span>  resilience <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  seed <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  tls <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pass <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  resilience <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  .compute <span class="op">=</span> <span class="st">"default"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -103,8 +96,10 @@
 <dd><p>[default NULL] if specified, the character URL or vector of URLs
 on the host for remote daemons to dial into, including a port accepting
 incoming connections (and optionally for websockets, a path), e.g.
-'tcp://10.75.32.70:5555' or 'ws://10.75.32.70:5555/path'. Specify a URL
-starting 'tls+tcp://' or 'wss://' to use secure TLS connections.</p></dd>
+'tcp://hostname:5555' or 'ws://10.75.32.70:5555/path'. Specify a URL
+starting 'tls+tcp://' or 'wss://' to use secure TLS connections.
+Auxiliary function <code><a href="host_url.html">host_url</a></code> may be used to construct a
+valid host URL.</p></dd>
 
 
 <dt>remote</dt>
@@ -123,8 +118,15 @@ below).</p></dd>
 <dt>...</dt>
 <dd><p>(optional) additional arguments passed through to
 <code><a href="dispatcher.html">dispatcher</a></code> if using dispatcher and/or <code><a href="daemon.html">daemon</a></code>
-if launching daemons. These include 'token' and 'lock' at dispatcher and
-'maxtasks', 'idletime', 'timerstart', 'output' and 'cleanup' at daemon.</p></dd>
+if launching daemons. These include 'token' at dispatcher and 'autoexit,
+'cleanup', 'output', 'maxtasks', 'idletime', 'walltime' and 'timerstart'
+at daemon.</p></dd>
+
+
+<dt>resilience</dt>
+<dd><p>[default TRUE] (applicable when not using dispatcher)
+logical value whether to retry failed tasks on other daemons. If FALSE,
+an appropriate 'errorValue' will be returned in such cases.</p></dd>
 
 
 <dt>seed</dt>
@@ -154,12 +156,6 @@ is encrypted with a password) For security, should be provided through a
 function that returns this value, rather than directly.</p></dd>
 
 
-<dt>resilience</dt>
-<dd><p>[default TRUE] (applicable when not using dispatcher)
-logical value whether to retry failed tasks on other daemons. If FALSE,
-an appropriate 'errorValue' will be returned in such cases.</p></dd>
-
-
 <dt>.compute</dt>
 <dd><p>[default 'default'] character compute profile to use for
 creating the daemons (each compute profile has its own set of daemons for
@@ -185,10 +181,13 @@ connecting to different resources).</p></dd>
     background process for each request.</p></li>
 <li><p>Any unresolved 'mirai' will return an 'errorValue' 7 (Object
     closed) after a reset.</p></li>
-</ul><p>If the host session ends, for whatever reason, all connected dispatcher
-    and daemon processes automatically exit as soon as their connections are
-    dropped. If a daemon is processing a task, it will exit as soon as the
-    task is complete.</p>
+</ul><p>If the host session ends, all connected dispatcher and daemon processes
+    automatically exit as soon as their connections are dropped (unless
+    the daemons were started with <code>autoexit = FALSE</code>). If a daemon is
+    processing a task, it will exit as soon as the task is complete.</p>
+<p>To reset persistent daemons started with <code>autoexit = FALSE</code>, use
+    <code>daemons(NULL)</code> instead, which also sends exit signals to all
+    connected daemons prior to resetting.</p>
 <p>For historical reasons, <code>daemons()</code> with no arguments returns the
     value of <code><a href="status.html">status</a></code>.</p>
     </div>
@@ -225,7 +224,8 @@ connecting to different resources).</p></dd>
     known <em>a priori</em>, such that tasks can be queued at a daemon behind
     a long-running task while other daemons remain idle. Nevertheless, this
     provides a resource-light approach suited to working with similar-length
-    tasks, or where concurrent tasks typically do not exceed available daemons.</p>
+    tasks, or where concurrent tasks typically do not exceed available
+    daemons.</p>
     </div>
     <div id="distributed-computing">
     <h2>Distributed Computing</h2>
@@ -234,8 +234,10 @@ connecting to different resources).</p></dd>
 
 <p>Specifying 'url' allows tasks to be distributed across the network. This
     should be a character string such as: 'tcp://10.75.32.70:5555' at which
-    daemon processes should connect to. Switching the URL scheme to 'tls+tcp://'
-    or 'wss://' automatically upgrades the connection to use TLS.</p>
+    daemon processes should connect to. Switching the URL scheme to
+    'tls+tcp://' or 'wss://' automatically upgrades the connection to use TLS.
+    The auxiliary function <code><a href="host_url.html">host_url</a></code> may be used to
+    automatically construct a valid host URL based on the computer's hostname.</p>
 <p>Specify 'remote' with a call to <code><a href="remote_config.html">remote_config</a></code> or
     <code><a href="remote_config.html">ssh_config</a></code> to launch daemons on remote machines. Otherwise,
     <code><a href="launch_local.html">launch_remote</a></code> may be used to generate the shell commands to
@@ -276,8 +278,8 @@ connecting to different resources).</p></dd>
     the same host URL.</p>
 <p>'n' is not required in this case, and disregarded if supplied, as network
     resources may be added or removed at any time. The host automatically
-    distributes tasks to all connected daemons and dispatchers in a round-robin
-    fashion.</p>
+    distributes tasks to all connected daemons and dispatchers in a
+    round-robin fashion.</p>
     </div>
     <div id="compute-profiles">
     <h2>Compute Profiles</h2>
@@ -302,13 +304,23 @@ connecting to different resources).</p></dd>
 <p>Note: further actions such as resetting daemons via <code>daemons(0)</code>
     should be carried out with the desired '.compute' argument specified.</p>
     </div>
+    <div id="everywhere">
+    <h2>Everywhere</h2>
+    
+
+
+<p><code><a href="everywhere.html">everywhere</a></code> evaluates an expression on all connected daemons
+    and persists the resultant state. This is designed for setting up the
+    evaluation environment, with particular packages loaded, or common
+    resources made available, etc.</p>
+    </div>
     <div id="timeouts">
     <h2>Timeouts</h2>
     
 
 
-<p>Specifying the <code>.timeout</code> argument in <code><a href="mirai.html">mirai</a></code> will ensure
-    that the 'mirai' always resolves.</p>
+<p>Specifying the <code>.timeout</code> argument in <code><a href="mirai.html">mirai</a></code> will
+    ensure that the 'mirai' always resolves.</p>
 <p>However, the task may not have completed and still be ongoing in the
     daemon process. In such situations, dispatcher ensures that queued tasks
     are not assigned to the busy process, however overall performance may
@@ -335,23 +347,23 @@ connecting to different resources).</p></dd>
 <span class="r-in"><span><span class="co"># Reset to zero</span></span></span>
 <span class="r-in"><span><span class="fu">daemons</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># 2 remote daemons via dispatcher (using zero wildcard)</span></span></span>
-<span class="r-in"><span><span class="fu">daemons</span><span class="op">(</span><span class="fl">2</span>, url <span class="op">=</span> <span class="st">"ws://:0"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># 2 remote daemons via dispatcher using WebSockets</span></span></span>
+<span class="r-in"><span><span class="fu">daemons</span><span class="op">(</span><span class="fl">2</span>, url <span class="op">=</span> <span class="fu"><a href="host_url.html">host_url</a></span><span class="op">(</span>ws <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="status.html">status</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Reset to zero</span></span></span>
 <span class="r-in"><span><span class="fu">daemons</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Set host URL for remote daemons to dial into (using zero wildcard)</span></span></span>
-<span class="r-in"><span><span class="fu">daemons</span><span class="op">(</span>url <span class="op">=</span> <span class="st">"tcp://:0"</span>, dispatcher <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Set host URL for remote daemons to dial into</span></span></span>
+<span class="r-in"><span><span class="fu">daemons</span><span class="op">(</span>url <span class="op">=</span> <span class="fu"><a href="host_url.html">host_url</a></span><span class="op">(</span><span class="op">)</span>, dispatcher <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="status.html">status</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Reset to zero</span></span></span>
 <span class="r-in"><span><span class="fu">daemons</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Launch 2 daemons on remotes 10.75.32.80 and 10.75.32.90 using SSH</span></span></span>
+<span class="r-in"><span><span class="co"># Launch 2 daemons on remotes 'nodeone' and 'nodetwo' using SSH</span></span></span>
 <span class="r-in"><span><span class="co"># connecting back directly to the host URL over a TLS connection:</span></span></span>
 <span class="r-in"><span><span class="co">#</span></span></span>
-<span class="r-in"><span><span class="co"># daemons(url = 'tls+tcp://10.75.32.70:5555',</span></span></span>
-<span class="r-in"><span><span class="co">#         remote = ssh_config(c('ssh://10.75.32.80', 'ssh://10.75.32.90')),</span></span></span>
+<span class="r-in"><span><span class="co"># daemons(url = host_url(tls = TRUE),</span></span></span>
+<span class="r-in"><span><span class="co">#         remote = ssh_config(c('ssh://nodeone', 'ssh://nodetwo')),</span></span></span>
 <span class="r-in"><span><span class="co">#         dispatcher = FALSE)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Launch 4 daemons on the remote machine 10.75.32.90 using SSH tunnelling</span></span></span>

@@ -22,24 +22,17 @@ launch_remote returns the shell command for deploying daemons as a
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li>
+  <a href="../articles/mirai.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/reference.html">mirai - Reference Manual</a>
-    </li>
-  </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -95,16 +88,16 @@ launch_remote returns the shell command for deploying daemons as a
     <dl><dt>url</dt>
 <dd><p>the character host URL or vector of host URLs, including the port
     to connect to (and optionally for websockets, a path), e.g.
-    tcp://10.75.32.70:5555' or 'ws://10.75.32.70:5555/path'</p>
+    tcp://hostname:5555' or 'ws://10.75.32.70:5555/path'</p>
 <p><strong>or</strong> integer index value, or vector of index values, of the
     dispatcher URLs, or 1L for the host URL (when not using dispatcher).</p>
 <p><strong>or</strong> for <code>launch_remote</code> only, a 'miraiCluster' or 'miraiNode'.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>(optional) additional arguments passed through to
-<code><a href="daemon.html">daemon</a></code>. These include 'asyncdial', 'maxtasks', 'idletime',
-'walltime', 'timerstart', 'output' and 'cleanup'.</p></dd>
+<dd><p>(optional) additional arguments passed through to <code><a href="daemon.html">daemon</a></code>.
+These include 'autoexit', 'cleanup', 'output', 'maxtasks', 'idletime',
+'walltime' and 'timerstart'.</p></dd>
 
 
 <dt>tls</dt>
@@ -156,7 +149,7 @@ returns the shell commands for deploying manually on remote machines.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="co"># Only run examples in interactive R sessions</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="daemons.html">daemons</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"ws://[::1]:0"</span>, dispatcher <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="daemons.html">daemons</a></span><span class="op">(</span>url <span class="op">=</span> <span class="fu"><a href="host_url.html">host_url</a></span><span class="op">(</span>ws <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, dispatcher <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="status.html">status</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">launch_local</span><span class="op">(</span><span class="fu"><a href="status.html">status</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">daemons</span>, maxtasks <span class="op">=</span> <span class="fl">10L</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">launch_remote</span><span class="op">(</span><span class="fl">1L</span>, maxtasks <span class="op">=</span> <span class="fl">10L</span><span class="op">)</span></span></span>
@@ -164,7 +157,7 @@ returns the shell commands for deploying manually on remote machines.</p></dd>
 <span class="r-in"><span><span class="fu"><a href="status.html">status</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="daemons.html">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="daemons.html">daemons</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2L</span>, url <span class="op">=</span> <span class="st">"tls+tcp://[::1]:0"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="daemons.html">daemons</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2L</span>, url <span class="op">=</span> <span class="fu"><a href="host_url.html">host_url</a></span><span class="op">(</span>tls <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="status.html">status</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">launch_local</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, idletime <span class="op">=</span> <span class="fl">60000L</span>, timerstart <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">launch_remote</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, idletime <span class="op">=</span> <span class="fl">60000L</span>, timerstart <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span></span>
