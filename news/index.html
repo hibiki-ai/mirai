@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.2</span>
       </span>
     </div>
 
@@ -57,7 +57,15 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.11.1" id="mirai-0111">mirai 0.11.1<a class="anchor" aria-label="anchor" href="#mirai-0111"></a></h2>
+<h2 class="page-header" data-toc-text="0.11.2" id="mirai-0112">mirai 0.11.2<a class="anchor" aria-label="anchor" href="#mirai-0112"></a></h2>
+<ul><li>
+<code><a href="../reference/make_cluster.html">make_cluster()</a></code> specifying only ‘url’ now succeeds with implied ‘n’ of one.</li>
+<li>Fixes <code><a href="../reference/mirai.html">mirai()</a></code> specifying a language object by name for ‘.expr’ in R versions 4.0 and earlier.</li>
+<li>Fixes regression in 0.11.1 which prevented the correct random seed being set when using dispatcher.</li>
+<li>Internal performance enhancements.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.11.1" id="mirai-0111">mirai 0.11.1<small>2023-11-04</small><a class="anchor" aria-label="anchor" href="#mirai-0111"></a></h2>
 <ul><li>Adds ‘mirai’ method for ‘as.promise()’ from the {promises} package (if available). This functionality is merged from the package {mirai.promises}, allowing use of the promise pipe <code>%...&gt;%</code> with a ‘mirai’.</li>
 <li>Parallel clusters (the alternative communications backend for R) now work with existing R versions, no longer requiring R &gt;= 4.4.</li>
 <li>
