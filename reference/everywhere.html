@@ -21,7 +21,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.3</span>
       </span>
     </div>
 
@@ -90,12 +90,14 @@ over, any arguments specified via '.args'.</p></dd>
 <dt>.args</dt>
 <dd><p>(optional) <strong>either</strong> a list of objects to be passed by
 <a href="https://rdrr.io/r/base/name.html" class="external-link">name</a> (found in the current scope), <strong>or else</strong> a list of
-name = value pairs, as in '...'.</p></dd>
+name = value pairs, as in '...'. If an object other than a list is
+supplied, it will be coerced to a list.</p></dd>
 
 
 <dt>.compute</dt>
 <dd><p>[default 'default'] character value for the compute profile
-to use when sending the mirai.</p></dd>
+to use (each compute profile has its own set of daemons for connecting to
+different resources).</p></dd>
 
 </dl></div>
     <div id="value">
