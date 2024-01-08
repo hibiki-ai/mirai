@@ -45,7 +45,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.11.3.9004</span>
       </span>
     </div>
 
@@ -116,13 +116,12 @@
 <span>    <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">+</span> <span class="va">y</span> <span class="op">^</span> <span class="fl">2</span></span>
 <span>    <span class="va">res</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span>
 <span>  <span class="op">}</span>,</span>
-<span>  x <span class="op">=</span> <span class="fl">11</span>,</span>
+<span>  x <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">m</span></span>
-<span><span class="co">#&gt; &lt; mirai &gt;</span></span>
-<span><span class="co">#&gt;  - $data for evaluated result</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt; mirai | $data &gt;</span></span></code></pre></div>
 <p>Above, all specified <code>name = value</code> pairs are passed through to the ‘mirai’.</p>
 <p>The ‘mirai’ yields an ‘unresolved’ logical NA whilst the async operation is ongoing.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -135,15 +134,13 @@
 <p>Upon completion, the ‘mirai’ resolves automatically to the evaluated result.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m</span><span class="op">$</span><span class="va">data</span></span>
-<span><span class="co">#&gt;  [1]  -0.04026068  -1.92115491   0.17933997   0.69404292   0.01749486</span></span>
-<span><span class="co">#&gt;  [6]   1.00000000  57.15965086   1.44083309   5.57600189  -0.52052023</span></span>
-<span><span class="co">#&gt; [11] -24.83812992</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] -0.4556118  1.3715484 -8.0198664  1.5971891 -2.0078760 -0.4980387</span></span>
+<span><span class="co">#&gt;  [7]  0.6260999 -0.1246904  0.7291030 -2.1948512</span></span></code></pre></div>
 <p>Alternatively, explicitly call and wait for the result using <code><a href="reference/call_mirai.html">call_mirai()</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/call_mirai.html">call_mirai</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">$</span><span class="va">data</span></span>
-<span><span class="co">#&gt;  [1]  -0.04026068  -1.92115491   0.17933997   0.69404292   0.01749486</span></span>
-<span><span class="co">#&gt;  [6]   1.00000000  57.15965086   1.44083309   5.57600189  -0.52052023</span></span>
-<span><span class="co">#&gt; [11] -24.83812992</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] -0.4556118  1.3715484 -8.0198664  1.5971891 -2.0078760 -0.4980387</span></span>
+<span><span class="co">#&gt;  [7]  0.6260999 -0.1246904  0.7291030 -2.1948512</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="vignette">Vignette<a class="anchor" aria-label="anchor" href="#vignette"></a>
@@ -164,14 +161,11 @@
 <div class="section level3">
 <h3 id="use-with-parallel-and-foreach">Use with Parallel and Foreach<a class="anchor" aria-label="anchor" href="#use-with-parallel-and-foreach"></a>
 </h3>
-<p>{mirai} provides an alternative communications backend for R’s base ‘parallel’ package.</p>
+<p>Implementing a low-level feature request by R-Core at <a href="https://contributor.r-project.org/r-project-sprint-2023/" class="external-link">R Project Sprint 2023</a>, {mirai} provides an alternative communications backend for R’s ‘parallel’ base package.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_cluster.html">make_cluster</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">cl</span></span>
-<span><span class="co">#&gt; &lt; miraiCluster &gt;</span></span>
-<span><span class="co">#&gt;  - cluster ID: `0`</span></span>
-<span><span class="co">#&gt;  - nodes: 4</span></span>
-<span><span class="co">#&gt;  - active: TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt; miraiCluster | ID: `0` nodes: 4 active: TRUE &gt;</span></span></code></pre></div>
 <p><code><a href="reference/make_cluster.html">make_cluster()</a></code> creates a ‘miraiCluster’, a cluster fully compatible with all ‘parallel’ functions such as:</p>
 <ul>
 <li><code><a href="https://rdrr.io/r/parallel/clusterApply.html" class="external-link">parallel::clusterApply()</a></code></li>
@@ -179,20 +173,20 @@
 <li><code><a href="https://rdrr.io/r/parallel/clusterApply.html" class="external-link">parallel::parLapplyLB()</a></code></li>
 </ul>
 <p>A ‘miraiCluster’ may also be registered for use with the <a href="https://cran.r-project.org/package=foreach" class="external-link"><code>foreach</code></a> package by <a href="https://cran.r-project.org/package=doParallel" class="external-link"><code>doParallel</code></a>.</p>
-<p>This functionality fulfils a request from R-Core at R Project Sprint 2023.</p>
 </div>
 <div class="section level3">
 <h3 id="use-with-crew-and-targets">Use with Crew and Targets<a class="anchor" aria-label="anchor" href="#use-with-crew-and-targets"></a>
 </h3>
 <p>The <a href="https://cran.r-project.org/package=crew" class="external-link"><code>crew</code></a> package is a distributed worker-launcher extending {mirai} to different distributed computing platforms, from traditional clusters to cloud services.</p>
-<p><a href="https://cran.r-project.org/package=crew.cluster" class="external-link"><code>crew.cluster</code></a> is a plug-in that enables mirai-based workflows on traditional high-performance computing clusters using:</p>
+<p><a href="https://cran.r-project.org/package=crew.cluster" class="external-link"><code>crew.cluster</code></a> enables mirai-based workflows on traditional high-performance computing clusters using:</p>
 <ul>
 <li>LFS</li>
 <li>PBS/TORQUE</li>
 <li>SGE</li>
 <li>SLURM</li>
 </ul>
-<p><a href="https://cran.r-project.org/package=targets" class="external-link"><code>targets</code></a>, a Make-like pipeline tool for statistics and data science, has integrated and adopted <a href="https://cran.r-project.org/package=crew" class="external-link"><code>crew</code></a> as its default recommended high-performance computing backend.</p>
+<p><a href="https://cran.r-project.org/package=crew.aws.batch" class="external-link"><code>crew.aws.batch</code></a> extends {mirai} to cloud computing using AWS Batch.</p>
+<p><a href="https://cran.r-project.org/package=targets" class="external-link"><code>targets</code></a>, a Make-like pipeline tool for statistics and data science, has integrated and adopted <a href="https://cran.r-project.org/package=crew" class="external-link"><code>crew</code></a> as its default high-performance computing backend.</p>
 </div>
 <div class="section level3">
 <h3 id="use-with-shiny-and-plumber">Use with Shiny and Plumber<a class="anchor" aria-label="anchor" href="#use-with-shiny-and-plumber"></a>
@@ -214,15 +208,12 @@
 <div class="section level3">
 <h3 id="use-with-torch">Use with Torch<a class="anchor" aria-label="anchor" href="#use-with-torch"></a>
 </h3>
-<p>The custom serialization interface in {mirai} is accessed via the <code><a href="reference/serialization.html">serialization()</a></code> function.</p>
-<p>In the case of <a href="https://cran.r-project.org/package=torch" class="external-link"><code>torch</code></a>, this would involve making the following call once at the start of your session:</p>
+<p>The custom serialization interface in {mirai} is accessed via <code><a href="reference/serialization.html">serialization()</a></code>.</p>
+<p>In the case of <a href="https://cran.r-project.org/package=torch" class="external-link"><code>torch</code></a>, simply make the following call once at the start of your session:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/serialization.html">serialization</a></span><span class="op">(</span>refhook <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu">torch</span><span class="fu">:::</span><span class="va">torch_serialize</span>, <span class="fu">torch</span><span class="fu">::</span><span class="va">torch_load</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [ mirai ] serialization functions registered</span></span></code></pre></div>
-<ul>
-<li>Note that <code>torch_serialize()</code> is available via <code>:::</code> since <a href="https://cran.r-project.org/package=torch" class="external-link"><code>torch</code></a> v0.9.0, and will be exported in v0.12.0.</li>
-</ul>
-<p>This allows tensors, including models, optimizers etc. to be used seamlessly across local and remote processes like any other R object.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/serialization.html">serialization</a></span><span class="op">(</span>refhook <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu">torch</span><span class="fu">::</span><span class="va">torch_serialize</span>, <span class="fu">torch</span><span class="fu">::</span><span class="va">torch_load</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; mirai serialization functions registered</span></span></code></pre></div>
+<p>This allows tensors, including more complex objects such as models, optimizers etc. to be used seamlessly across local and remote processes in the same way as other R objects.</p>
 <p>For more details, please refer to the relevant <a href="https://shikokuchuo.net/mirai/articles/mirai.html#serialization-custom-functions">vignette chapter</a>.</p>
 </div>
 <div class="section level3">
@@ -231,8 +222,8 @@
 <p>We would like to thank in particular:</p>
 <p><a href="https://github.com/wlandau/" class="external-link">William Landau</a>, for being instrumental in shaping development of the package, from initiating the original request for persistent daemons, through to orchestrating robustness testing for the high performance computing requirements of <a href="https://cran.r-project.org/package=crew" class="external-link"><code>crew</code></a> and <a href="https://cran.r-project.org/package=targets" class="external-link"><code>targets</code></a>.</p>
 <p><a href="https://github.com/HenrikBengtsson/" class="external-link">Henrik Bengtsson</a>, for valuable and incisive insights leading to the interface accepting broader usage patterns.</p>
-<p><a href="https://github.com/ltierney/" class="external-link">Luke Tierney</a>, R Core, for introducing R’s implementation of L’Ecuyer-CMRG streams, used to ensure statistical independence in parallel processing.</p>
-<p><a href="https://github.com/dfalbel/" class="external-link">Daniel Falbel</a>, for discussion around an efficient solution to serialization and transmission of ‘torch’ tensors.</p>
+<p><a href="https://github.com/ltierney/" class="external-link">Luke Tierney</a>, R Core, for discussion on R’s implementation of L’Ecuyer-CMRG streams, used to ensure statistical independence in parallel processing.</p>
+<p><a href="https://github.com/dfalbel/" class="external-link">Daniel Falbel</a>, for discussion around an efficient solution to serialization and transmission of <a href="https://cran.r-project.org/package=torch" class="external-link"><code>torch</code></a> tensors.</p>
 <p><a href="#table-of-contents">« Back to ToC</a></p>
 </div>
 <div class="section level3">
