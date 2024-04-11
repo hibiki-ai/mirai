@@ -12,19 +12,14 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
 <meta property="og:title" content="Minimalist Async Evaluation Framework for R">
-<meta property="og:description" content="Lightweight parallel code execution and distributed computing.
-    Designed for simplicity, a mirai evaluates an R expression asynchronously,
-    on local or network resources, resolving automatically upon completion.
-    State of the art networking and concurrency via nanonext and NNG
-    (Nanomsg Next Gen) offers reliable and efficient scheduling over fast
-    inter-process communications or TCP/IP secured by TLS.">
+<meta property="og:description" content="Lightweight parallel code execution and distributed computing. Designed for simplicity, a mirai evaluates an R expression asynchronously, on local or network resources, resolving automatically upon completion. State of the art networking and concurrency via nanonext and NNG (Nanomsg Next Gen) offers reliable and efficient scheduling over fast inter-process communications or TCP/IP secured by TLS.">
 <meta property="og:image" content="https://shikokuchuo.net/mirai/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -46,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.13.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.13.2</span>
       </span>
     </div>
 
@@ -120,7 +115,7 @@
 <div class="section level3">
 <h3 id="みらい">みらい<a class="anchor" aria-label="anchor" href="#%E3%81%BF%E3%82%89%E3%81%84"></a>
 </h3>
-<p><br> ( futuristic ・ whisper ) <br><br> Minimalist Async Evaluation Framework for R <br><br> Lightweight parallel code execution and distributed computing. <br><br><code><a href="reference/mirai.html">mirai()</a></code> returns a ‘mirai’ object immediately. Designed for simplicity, a ‘mirai’ evaluates an R expression asynchronously, on local or network resources, resolving automatically upon completion. <br><br> State of the art networking and concurrency via <a href="https://doi.org/10.5281/zenodo.7903429" class="external-link">nanonext</a> offers reliable and efficient scheduling over fast inter-process communications or TCP/IP secured by TLS. <br><br></p>
+<p><br> ( 未来 ) <br><br> Minimalist Async Evaluation Framework for R <br><br> Lightweight parallel code execution and distributed computing. <br><br><code><a href="reference/mirai.html">mirai()</a></code> returns a ‘mirai’ object immediately. Designed for simplicity, a ‘mirai’ evaluates an R expression asynchronously, on local or network resources, resolving automatically upon completion. <br><br> State of the art networking and concurrency via <a href="https://doi.org/10.5281/zenodo.7903429" class="external-link">nanonext</a> offers reliable and efficient scheduling over fast inter-process communications or TCP/IP secured by TLS. <br><br></p>
 <blockquote>
 <p><em>mirai パッケージを試してみたところ、かなり速くて驚きました</em></p>
 </blockquote>
@@ -128,14 +123,11 @@
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h3>
-<p>Install the fast channel release (v0.13.1) from R-releases:</p>
+<p>Install the latest release from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mirai"</span>, repos <span class="op">=</span> <span class="st">"https://r-releases.r-universe.dev"</span><span class="op">)</span></span></code></pre></div>
-<p>Or the slow channel release (v0.12.1) from CRAN:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mirai"</span><span class="op">)</span></span></code></pre></div>
-<p>Or the latest development build from the author’s R-universe:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<p>Or the development version from R-universe:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mirai"</span>, repos <span class="op">=</span> <span class="st">"https://shikokuchuo.r-universe.dev"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -143,7 +135,7 @@
 </h3>
 <p>Use <code><a href="reference/mirai.html">mirai()</a></code> to evaluate an expression asynchronously in a separate, clean R process.</p>
 <p>A ‘mirai’ object is returned immediately.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shikokuchuo.net/mirai/">mirai</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/mirai.html">mirai</a></span><span class="op">(</span></span>
@@ -159,23 +151,23 @@
 <span><span class="co">#&gt; &lt; mirai | $data &gt;</span></span></code></pre></div>
 <p>Above, all specified <code>name = value</code> pairs are passed through to the ‘mirai’.</p>
 <p>The ‘mirai’ yields an ‘unresolved’ logical NA whilst the async operation is ongoing.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m</span><span class="op">$</span><span class="va">data</span></span>
 <span><span class="co">#&gt; 'unresolved' logi NA</span></span></code></pre></div>
 <p>To check whether a mirai has resolved:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/unresolved.html">unresolved</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 <p>Upon completion, the ‘mirai’ resolves automatically to the evaluated result.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m</span><span class="op">$</span><span class="va">data</span></span>
-<span><span class="co">#&gt;  [1]   1.20758031 -41.42852842   0.32189519   1.19199609  -0.58274317</span></span>
-<span><span class="co">#&gt;  [6]  -1.71602183   0.83892893   3.10660130  -0.02413796   0.82810227</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1]  1.8451625 -0.2165991 -1.2117962  0.4428216  1.3387124  0.7469864</span></span>
+<span><span class="co">#&gt;  [7]  2.2582459 -0.8252213 -4.6168235  0.5419577</span></span></code></pre></div>
 <p>Alternatively, explicitly call and wait for the result using <code><a href="reference/call_mirai.html">call_mirai()</a></code>.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/call_mirai.html">call_mirai</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">$</span><span class="va">data</span></span>
-<span><span class="co">#&gt;  [1]   1.20758031 -41.42852842   0.32189519   1.19199609  -0.58274317</span></span>
-<span><span class="co">#&gt;  [6]  -1.71602183   0.83892893   3.10660130  -0.02413796   0.82810227</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1]  1.8451625 -0.2165991 -1.2117962  0.4428216  1.3387124  0.7469864</span></span>
+<span><span class="co">#&gt;  [7]  2.2582459 -0.8252213 -4.6168235  0.5419577</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="daemons">Daemons<a class="anchor" aria-label="anchor" href="#daemons"></a>
@@ -187,35 +179,36 @@
 <p><a href="https://shikokuchuo.net/mirai/articles/mirai.html#distributed-computing-launching-daemons">Launchers</a> allow daemons to be started both on the local machine and across the network via SSH etc.</p>
 <p><a href="https://shikokuchuo.net/mirai/articles/mirai.html#distributed-computing-tls-secure-connections">Secure TLS connections</a> can be automatically-configured on-the-fly for remote daemon connections.</p>
 <p>Refer to the <a href="https://shikokuchuo.net/mirai/articles/mirai.html">{mirai} vignette</a> for full package functionality. This may be accessed within R by:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"mirai"</span>, package <span class="op">=</span> <span class="st">"mirai"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="integrations">Integrations<a class="anchor" aria-label="anchor" href="#integrations"></a>
 </h3>
 <p>The following core integrations are documented, with usage examples in the linked vignettes:</p>
-<p><a href="https://shikokuchuo.net/mirai/articles/parallel.html">{parallel}</a> - provides an alternative communications backend for R, implementing a low-level feature request by R-Core at R Project Sprint 2023.</p>
-<p><a href="https://shikokuchuo.net/mirai/articles/promises.html">{promises}</a> - ‘mirai’ may be used interchangeably with ‘promises’ by using the promise pipe <code>%...&gt;%</code> or the <code>as.promise()</code> method.</p>
-<p><a href="https://shikokuchuo.net/mirai/articles/plumber.html">{plumber}</a> - serves as an asynchronous / distributed backend, scaling applications via the use of promises.</p>
-<p><a href="https://shikokuchuo.net/mirai/articles/shiny.html">{shiny}</a> - serves as an asynchronous / distributed backend, plugging directly into the reactive framework without the need for promises.</p>
-<p><a href="https://shikokuchuo.net/mirai/articles/torch.html">{torch}</a> - the custom serialization interface allows tensors and complex objects such as models and optimizers to be used seamlessly across parallel processes.</p>
+<p><a href="https://shikokuchuo.net/mirai/articles/parallel.html"><code>parallel</code></a> - provides an alternative communications backend for R, implementing a low-level feature request by R-Core at R Project Sprint 2023.</p>
+<p><a href="https://shikokuchuo.net/mirai/articles/promises.html"><code>promises</code></a> - ‘mirai’ may be used interchangeably with ‘promises’ by using the promise pipe <code>%...&gt;%</code> or the <code>as.promise()</code> method.</p>
+<p><a href="https://shikokuchuo.net/mirai/articles/plumber.html"><code>plumber</code></a> - serves as an asynchronous / distributed backend, scaling applications via the use of promises.</p>
+<p><a href="https://shikokuchuo.net/mirai/articles/shiny.html"><code>shiny</code></a> - serves as an asynchronous / distributed backend, plugging directly into the reactive framework or accepted anywhere that takes a ‘promise’.</p>
+<p><a href="https://shikokuchuo.net/mirai/articles/torch.html"><code>torch</code></a> - the custom serialization interface allows tensors and complex objects such as models and optimizers to be used seamlessly across parallel processes.</p>
 </div>
 <div class="section level3">
 <h3 id="powering-crew-and-targets-high-performance-computing">Powering Crew and Targets High Performance Computing<a class="anchor" aria-label="anchor" href="#powering-crew-and-targets-high-performance-computing"></a>
 </h3>
-<p><a href="https://docs.ropensci.org/targets/" class="external-link">{targets}</a>, a Make-like pipeline tool for statistics and data science, has integrated and adopted {crew} as its default high-performance computing backend.</p>
-<p><a href="https://wlandau.github.io/crew/" class="external-link">{crew}</a> is a distributed worker-launcher extending {mirai} to different distributed computing platforms, from traditional clusters to cloud services.</p>
-<p><a href="https://wlandau.github.io/crew.cluster/" class="external-link">{crew.cluster}</a> enables mirai-based workflows on traditional high-performance computing clusters using LFS, PBS/TORQUE, SGE and SLURM.</p>
-<p><a href="https://wlandau.github.io/crew.aws.batch/" class="external-link">{crew.aws.batch}</a> extends {mirai} to cloud computing using AWS Batch.</p>
+<p><a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a>, a Make-like pipeline tool for statistics and data science, has integrated and adopted <code>crew</code> as its default high-performance computing backend.</p>
+<p><a href="https://wlandau.github.io/crew/" class="external-link"><code>crew</code></a> is a distributed worker-launcher extending <code>mirai</code> to different distributed computing platforms, from traditional clusters to cloud services.</p>
+<p><a href="https://wlandau.github.io/crew.cluster/" class="external-link"><code>crew.cluster</code></a> enables mirai-based workflows on traditional high-performance computing clusters using LFS, PBS/TORQUE, SGE and SLURM.</p>
+<p><a href="https://wlandau.github.io/crew.aws.batch/" class="external-link"><code>crew.aws.batch</code></a> extends <code>mirai</code> to cloud computing using AWS Batch.</p>
 </div>
 <div class="section level3">
 <h3 id="thanks">Thanks<a class="anchor" aria-label="anchor" href="#thanks"></a>
 </h3>
 <p>We would like to thank in particular:</p>
-<p><a href="https://github.com/wlandau/" class="external-link">Will Landau</a>, for being instrumental in shaping development of the package, from initiating the original request for persistent daemons, through to orchestrating robustness testing for the high performance computing requirements of {crew} and {targets}.</p>
-<p><a href="https://github.com/HenrikBengtsson/" class="external-link">Henrik Bengtsson</a>, for valuable and incisive insights leading to the interface accepting broader usage patterns.</p>
-<p><a href="https://github.com/ltierney/" class="external-link">Luke Tierney</a>, R Core, for discussion on R’s implementation of L’Ecuyer-CMRG streams, used to ensure statistical independence in parallel processing.</p>
-<p><a href="https://github.com/dfalbel/" class="external-link">Daniel Falbel</a>, for discussion around an efficient solution to serialization and transmission of {torch} tensors.</p>
+<p><a href="https://github.com/wlandau/" class="external-link">Will Landau</a>, for being instrumental in shaping development of the package, from initiating the original request for persistent daemons, through to orchestrating robustness testing for the high performance computing requirements of <code>crew</code> and <code>targets</code>.</p>
+<p><a href="https://github.com/jcheng5/" class="external-link">Joe Cheng</a>, for optimising the <code>promises</code> method to make <code>mirai</code> work seamlessly within Shiny, and guidance for implementing error stack traces.</p>
+<p><a href="https://github.com/ltierney/" class="external-link">Luke Tierney</a>, R Core, for discussion on R’s implementation of L’Ecuyer-CMRG streams, used to ensure statistical independence in parallel processing, and collaboration in ‘providing an alternative communications backend for R’.</p>
+<p><a href="https://github.com/HenrikBengtsson/" class="external-link">Henrik Bengtsson</a>, for valuable insights leading to the interface accepting broader usage patterns.</p>
+<p><a href="https://github.com/dfalbel/" class="external-link">Daniel Falbel</a>, for discussion around an efficient solution to serialization and transmission of <code>torch</code> tensors.</p>
 </div>
 <div class="section level3">
 <h3 id="links">Links<a class="anchor" aria-label="anchor" href="#links"></a>
@@ -274,7 +267,6 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://CRAN.R-project.org/package=mirai" class="external-link"><img src="https://www.r-pkg.org/badges/version/mirai?color=112d4e" alt="CRAN status"></a></li>
-<li><a href="https://r-releases.r-universe.dev/mirai" class="external-link"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fr-releases.r-universe.dev%2Fapi%2Fpackages%2Fmirai&amp;query=%24.Version&amp;label=R-releases&amp;color=112d4e" alt="R-releases status"></a></li>
 <li><a href="https://shikokuchuo.r-universe.dev/mirai" class="external-link"><img src="https://shikokuchuo.r-universe.dev/badges/mirai?color=ddcacc" alt="R-universe status"></a></li>
 <li><a href="https://github.com/shikokuchuo/mirai/actions" class="external-link"><img src="https://github.com/shikokuchuo/mirai/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://app.codecov.io/gh/shikokuchuo/mirai" class="external-link"><img src="https://codecov.io/gh/shikokuchuo/mirai/graph/badge.svg" alt="codecov"></a></li>
@@ -293,7 +285,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
       </footer>
