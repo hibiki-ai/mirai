@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="mirai">
 <title>mirai - Shiny Integration • mirai</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -12,12 +13,11 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="mirai - Shiny Integration">
 <meta property="og:description" content="mirai">
 <meta property="og:image" content="https://shikokuchuo.net/mirai/logo.png">
@@ -26,93 +26,78 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.13.2</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">mirai</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../articles/mirai.html">Get started</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../articles/mirai.html">Get started</a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/parallel.html">mirai - Parallel Integration</a>
-    </li>
-    <li>
-      <a href="../articles/plumber.html">mirai - Plumber Integration</a>
-    </li>
-    <li>
-      <a href="../articles/promises.html">mirai - Promises Integration</a>
-    </li>
-    <li>
-      <a href="../articles/shiny.html">mirai - Shiny Integration</a>
-    </li>
-    <li>
-      <a href="../articles/torch.html">mirai - Torch Integration</a>
-    </li>
-  </ul>
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/databases.html">mirai - Databases and Arrow</a>
+    <a class="dropdown-item" href="../articles/parallel.html">mirai - Parallel Integration</a>
+    <a class="dropdown-item" href="../articles/plumber.html">mirai - Plumber Integration</a>
+    <a class="dropdown-item" href="../articles/promises.html">mirai - Promises Integration</a>
+    <a class="dropdown-item" href="../articles/shiny.html">mirai - Shiny Integration</a>
+    <a class="dropdown-item" href="../articles/torch.html">mirai - Torch Integration</a>
+  </div>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/shikokuchuo/mirai/" class="external-link">
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/shikokuchuo/mirai/">
     <span class="fa fa-github"></span>
      
   </a>
 </li>
-<li>
-  <a href="https://shikokuchuo.net/" class="external-link">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://shikokuchuo.net/">
     <span class="fa fa-cube"></span>
      
   </a>
 </li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+    
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
-      
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>mirai - Shiny Integration</h1>
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>mirai - Shiny Integration</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/shikokuchuo/mirai/blob/HEAD/vignettes/shiny.Rmd" class="external-link"><code>vignettes/shiny.Rmd</code></a></small>
-      <div class="hidden name"><code>shiny.Rmd</code></div>
-
+      <div class="d-none name"><code>shiny.Rmd</code></div>
     </div>
 
     
@@ -120,29 +105,39 @@
 <div class="section level3">
 <h3 id="shiny-integration">Shiny Integration<a class="anchor" aria-label="anchor" href="#shiny-integration"></a>
 </h3>
-<div class="section level4">
-<h4 id="shiny-example-usage">Shiny Example Usage<a class="anchor" aria-label="anchor" href="#shiny-example-usage"></a>
-</h4>
 <p><code>mirai</code> may be used as an asynchronous / distributed
 backend to scale <a href="https://shiny.posit.co/" class="external-link">Shiny</a>
 applications.</p>
-<p>Depending on the options suppled to <code><a href="../reference/daemons.html">daemons()</a></code>, tasks may
-be distributed across local background processes or multiple networked
-servers in an efficient and performant manner.</p>
-</div>
+<p>Depending on the options suppled to <code><a href="../reference/daemons.html">daemons()</a></code>, mirai
+tasks may be distributed across local background processes or multiple
+networked servers in an efficient and performant manner.</p>
+<p>For use with Shiny, <code>mirai</code> implements innovative,
+event-driven promises, developed in collaboration with Joe Cheng.</p>
+<ul>
+<li>Do not require each promise to be polled for completion by a
+<code>later</code> loop like other promises.</li>
+<li>Instead, promise actions are automatically queued for execution as
+soon as each ‘mirai’ resolves.</li>
+<li>Allows for much higher responsiveness (lower latency) and massive
+scalability (situations with thousand of promises or more).</li>
+</ul>
 <div class="section level4">
-<h4 id="example-using-shiny-extendedtask">Example using Shiny ExtendedTask<a class="anchor" aria-label="anchor" href="#example-using-shiny-extendedtask"></a>
+<h4 id="shiny-extendedtask-example-clock-and-plot">Shiny ExtendedTask Example: Clock and Plot<a class="anchor" aria-label="anchor" href="#shiny-extendedtask-example-clock-and-plot"></a>
 </h4>
-<p>‘mirai’ may be used within Shiny’s ExtendedTask framework to create
-scalable Shiny apps, which are more responsive for a single user, as
-well as multiple concurrent users. ‘mirai’ are accepted anywhere a
-‘promise’, ‘future’ or ‘future_promise’ is currently accepted.</p>
-<p>The example below requires Shiny &gt;= 1.8.1 and promises &gt;=
-1.3.0.</p>
-<p>Importantly, the app remains responsive, as shown by the clock
+<p>mirai may be used within Shiny’s ExtendedTask framework (in
+<code>shiny</code> &gt;= 1.8.1) to create scalable Shiny apps, which are
+more responsive for a single user, as well as for multiple concurrent
+users.</p>
+<p>‘mirai’ are accepted anywhere a ‘promise’, ‘future’ or
+‘future_promise’ is currently accepted (with <code>promises</code> &gt;=
+1.3.0).</p>
+<p>In the example below, the app remains responsive, with the clock
 continuing to tick whilst the simulated expensive computation is
 running. Also the button is disabled and the plot greyed out until the
 computation is complete.</p>
+<p>By wrapping the <code>runApp()</code> call in
+<code>with(daemons(...), ...)</code> the daemons are set up for the
+duration of the app, exiting automatically when the app is stopped.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/bslib/" class="external-link">bslib</a></span><span class="op">)</span></span>
@@ -153,7 +148,7 @@ computation is complete.</p>
 <span>  <span class="fu">hr</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="fu">numericInput</span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"Sample size (n)"</span>, <span class="fl">100</span><span class="op">)</span>,</span>
 <span>  <span class="fu">numericInput</span><span class="op">(</span><span class="st">"delay"</span>, <span class="st">"Seconds to take for plot"</span>, <span class="fl">5</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/bslib/man/input_task_button.html" class="external-link">input_task_button</a></span><span class="op">(</span><span class="st">"btn"</span>, <span class="st">"Plot normal distribution"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/bslib/man/input_task_button.html" class="external-link">input_task_button</a></span><span class="op">(</span><span class="st">"btn"</span>, <span class="st">"Plot uniform distribution"</span><span class="op">)</span>,</span>
 <span>  <span class="fu">plotOutput</span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -164,36 +159,199 @@ computation is complete.</p>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="va">extended_task</span> <span class="op">&lt;-</span> <span class="va">ExtendedTask</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
-<span>    <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">}</span>, .args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">}</span>, <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/bslib/man/bind_task_button.html" class="external-link">bind_task_button</a></span><span class="op">(</span><span class="st">"btn"</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="fu">observeEvent</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn</span>, <span class="op">{</span></span>
-<span>    <span class="va">extended_task</span><span class="op">$</span><span class="fu">invoke</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span>, <span class="va">input</span><span class="op">$</span><span class="va">delay</span><span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="op">)</span></span>
+<span>  <span class="fu">observeEvent</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn</span>, <span class="va">extended_task</span><span class="op">$</span><span class="fu">invoke</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span>, <span class="va">input</span><span class="op">$</span><span class="va">delay</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">extended_task</span><span class="op">$</span><span class="fu">result</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">extended_task</span><span class="op">$</span><span class="fu">result</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">extended_task</span><span class="op">$</span><span class="fu">result</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">app</span> <span class="op">&lt;-</span> <span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># run app using 2 local daemons</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, <span class="fu">runApp</span><span class="op">(</span><span class="va">app</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><em>Thanks to Joe Cheng for providing examples on which the above is
+based.</em></p>
+<p>The key components to using ExtendedTask are:</p>
+<ol style="list-style-type: decimal">
+<li>In the UI, use <code><a href="https://rdrr.io/pkg/bslib/man/input_task_button.html" class="external-link">bslib::input_task_button()</a></code>. This is a
+button which is disabled during computation to prevent additional
+clicks.</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/bslib/man/input_task_button.html" class="external-link">input_task_button</a></span><span class="op">(</span><span class="st">"btn"</span>, <span class="st">"Plot uniform distribution"</span><span class="op">)</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>In the server, create an ExtendedTask object by calling
+<code>ExtendedTask$new()</code> on a function passing named arguments to
+<code><a href="../reference/mirai.html">mirai()</a></code>, and bind it to the button created in (1). The
+arguments are passed in through the use of <code><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment()</a></code>
+which captures the ‘x’ and ‘y’ contained in the environment of the
+anonymous function.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">extended_task</span> <span class="op">&lt;-</span> <span class="va">ExtendedTask</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
+<span>    <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">}</span>, <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/bslib/man/bind_task_button.html" class="external-link">bind_task_button</a></span><span class="op">(</span><span class="st">"btn"</span><span class="op">)</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>In the server, create an observer on the input button, which invokes
+the ExtendedTask, supplying the arguments to the anonymous function
+above.</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">observeEvent</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn</span>, <span class="va">extended_task</span><span class="op">$</span><span class="fu">invoke</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span>, <span class="va">input</span><span class="op">$</span><span class="va">delay</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>In the server, create a render function for the output, which
+consumes the result of the ExtendedTask.</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">extended_task</span><span class="op">$</span><span class="fu">result</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="shiny-extendedtask-example-generative-art">Shiny ExtendedTask Example: Generative Art<a class="anchor" aria-label="anchor" href="#shiny-extendedtask-example-generative-art"></a>
+</h4>
+<p>The following app produces pretty spiral patterns.</p>
+<p>The user can add multiple plots, making use of Shiny modules, each
+having a different calculation time.</p>
+<p>The plots are generated asynchronously, and it is easy to see the
+practical limitations of the number of daemons set. For example, if
+updating 4 plots, and there are only 3 daemons, the 4th plot will not
+start to be generated until one of the other plots has finished.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shikokuchuo.net/mirai/">mirai</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/bslib/" class="external-link">bslib</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://koenderks.github.io/aRtsy/" class="external-link">aRtsy</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># function definitions</span></span>
+<span></span>
+<span><span class="va">run_task</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">calc_time</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="va">calc_time</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    colors <span class="op">=</span> <span class="fu">aRtsy</span><span class="fu">::</span><span class="fu">colorPalette</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"random"</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
+<span>    angle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, min <span class="op">=</span> <span class="op">-</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span>, max <span class="op">=</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span><span class="op">)</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    p <span class="op">=</span> <span class="fl">1</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">plot_result</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">result</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span>what <span class="op">=</span> <span class="va">canvas_phyllotaxis</span>, args <span class="op">=</span> <span class="va">result</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># modules for individual plots</span></span>
+<span></span>
+<span><span class="va">plotUI</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">id</span>, <span class="va">calc_time</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">ns</span> <span class="op">&lt;-</span> <span class="fu">NS</span><span class="op">(</span><span class="va">id</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/bslib/man/card.html" class="external-link">card</a></span><span class="op">(</span></span>
+<span>    <span class="fu">strong</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Plot (calc time = "</span>, <span class="va">calc_time</span>, <span class="st">" secs)"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/bslib/man/input_task_button.html" class="external-link">input_task_button</a></span><span class="op">(</span><span class="fu">ns</span><span class="op">(</span><span class="st">"resample"</span><span class="op">)</span>, <span class="st">"Resample"</span><span class="op">)</span>,</span>
+<span>    <span class="fu">plotOutput</span><span class="op">(</span><span class="fu">ns</span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span>, height<span class="op">=</span><span class="st">"400px"</span>, width<span class="op">=</span><span class="st">"400px"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">plotServer</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">id</span>, <span class="va">calc_time</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/force.html" class="external-link">force</a></span><span class="op">(</span><span class="va">id</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/force.html" class="external-link">force</a></span><span class="op">(</span><span class="va">calc_time</span><span class="op">)</span></span>
+<span>  <span class="fu">moduleServer</span><span class="op">(</span></span>
+<span>    <span class="va">id</span>,</span>
+<span>    <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="va">extended_task</span> <span class="op">&lt;-</span> <span class="va">ExtendedTask</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
+<span>        <span class="kw">function</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="fu">run</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
+<span>      <span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/bslib/man/bind_task_button.html" class="external-link">bind_task_button</a></span><span class="op">(</span><span class="st">"resample"</span><span class="op">)</span></span>
+<span>      </span>
+<span>      <span class="fu">observeEvent</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">resample</span>,</span>
+<span>                   <span class="va">extended_task</span><span class="op">$</span><span class="fu">invoke</span><span class="op">(</span>x <span class="op">=</span> <span class="va">calc_time</span>, run <span class="op">=</span> <span class="va">run_task</span><span class="op">)</span><span class="op">)</span></span>
+<span>      </span>
+<span>      <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="fu">plot_result</span><span class="op">(</span><span class="va">extended_task</span><span class="op">$</span><span class="fu">result</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>      </span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># ui and server</span></span>
+<span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/bslib/man/page_sidebar.html" class="external-link">page_sidebar</a></span><span class="op">(</span>fillable <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  sidebar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/bslib/man/sidebar.html" class="external-link">sidebar</a></span><span class="op">(</span></span>
+<span>    <span class="fu">numericInput</span><span class="op">(</span><span class="st">"calc_time"</span>, <span class="st">"Calculation time (secs)"</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span>    <span class="fu">actionButton</span><span class="op">(</span><span class="st">"add"</span>, <span class="st">"Add"</span>, class<span class="op">=</span><span class="st">"btn-primary"</span><span class="op">)</span>,</span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/bslib/man/layout_column_wrap.html" class="external-link">layout_column_wrap</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"results"</span>, width <span class="op">=</span> <span class="st">"400px"</span>, fillable <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span></span>
+<span>  <span class="fu">observeEvent</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">add</span>, <span class="op">{</span></span>
+<span>    <span class="va">id</span> <span class="op">&lt;-</span> <span class="fu">nanonext</span><span class="fu">::</span><span class="fu"><a href="https://shikokuchuo.net/nanonext/reference/random.html" class="external-link">random</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span>
+<span>    <span class="fu">insertUI</span><span class="op">(</span><span class="st">"#results"</span>, where <span class="op">=</span> <span class="st">"beforeEnd"</span>, ui <span class="op">=</span> <span class="fu">plotUI</span><span class="op">(</span><span class="va">id</span>, <span class="va">input</span><span class="op">$</span><span class="va">calc_time</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu">plotServer</span><span class="op">(</span><span class="va">id</span>, <span class="va">input</span><span class="op">$</span><span class="va">calc_time</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="co"># run extended tasks using 2 daemons</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, <span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><em>Thanks to Joe Cheng for providing examples on which the above is
-based.</em></p>
+<span><span class="va">app</span> <span class="op">&lt;-</span> <span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># run app using 3 local daemons</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, <span class="fu">runApp</span><span class="op">(</span><span class="va">app</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><em>The above example builds on original code by Joe Cheng, Daniel
+Woodie and William Landau.</em></p>
+<p>This example uses <code>...</code> to pass variables through to the
+<code><a href="../reference/mirai.html">mirai()</a></code> call. This is an alternative and equivalent way to
+using <code><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment()</a></code> and can be flexibly used to pass
+objects not defined there.</p>
+<p>The key components to using this ExtendedTask example are:</p>
+<ol style="list-style-type: decimal">
+<li>In the UI, use <code><a href="https://rdrr.io/pkg/bslib/man/input_task_button.html" class="external-link">bslib::input_task_button()</a></code>. This is a
+button which is disabled during computation to prevent additional
+clicks.</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/bslib/man/input_task_button.html" class="external-link">input_task_button</a></span><span class="op">(</span><span class="fu">ns</span><span class="op">(</span><span class="st">"resample"</span><span class="op">)</span>, <span class="st">"Resample"</span><span class="op">)</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>In the server, create an ExtendedTask object by calling
+<code>ExtendedTask$new()</code> on a function passing arguments to
+<code><a href="../reference/mirai.html">mirai()</a></code>, and bind it to the button created in (1). As not
+all variables are supplied by inputs in this case, we make use of
+<code><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment()</a></code> to conveniently pass in the calling
+environment of the ExtendedTask function.</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">extended_task</span> <span class="op">&lt;-</span> <span class="va">ExtendedTask</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
+<span>  <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">run</span> <span class="op">=</span> <span class="va">run_task</span><span class="op">)</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="fu">run</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/bslib/man/bind_task_button.html" class="external-link">bind_task_button</a></span><span class="op">(</span><span class="st">"resample"</span><span class="op">)</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>In the server, create an observer on the input button, which invokes
+the ExtendedTask with the parameters required by the ExtendedTask
+function.</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">observeEvent</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">resample</span>, <span class="va">extended_task</span><span class="op">$</span><span class="fu">invoke</span><span class="op">(</span><span class="va">calc_time</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>In the server, create a render function for the output, which
+consumes the result of the ExtendedTask.</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="fu">plot_result</span><span class="op">(</span><span class="va">extended_task</span><span class="op">$</span><span class="fu">result</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
-<h4 id="example-without-promises">Example Without Promises<a class="anchor" aria-label="anchor" href="#example-without-promises"></a>
+<h4 id="advanced-non-promise-example-generative-art">Advanced Non-Promise Example: Generative Art<a class="anchor" aria-label="anchor" href="#advanced-non-promise-example-generative-art"></a>
 </h4>
 <p>Whilst it is generally recommended to use the ExtendedTask framework,
-it is also possible for ‘mirai’ to plug directly into the reactive
-framework, without the need for promises. This may be required for
-advanced uses of asynchronous programming.</p>
-<p>The following example has a button to submit tasks, which will be
-processed by one of 5 daemons, outputting a spiral pattern upon
-completion. If more than 5 tasks are submitted at once, the chart
-updates 5 at a time, limited by the number of available daemons.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+it is also possible for mirai to plug directly into Shiny’s reactive
+framework, without the use of ‘promises’ either implicitly or
+explicitly. This may be required for advanced uses of asynchronous
+programming, or where the use case does not fit the semantics of
+ExtendedTask.</p>
+<p>The following is similar to the previous example, but allows multiple
+tasks to be submitted at once, rather than one after the other as
+required by ExtendedTask. There is a button to submit tasks, which will
+be processed by one of 3 daemons, outputting a pretty spiral pattern
+upon completion. If more than 3 tasks are submitted at once, the chart
+updates 3 at a time, limited by the number of available daemons.</p>
+<p>It requires more boilerplate code to manage the mirai tasks, but
+otherwise functions similarly to the ExtendedTask example.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shikokuchuo.net/mirai/">mirai</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
@@ -202,7 +360,7 @@ updates 5 at a time, limited by the number of available daemons.</p>
 <span><span class="co"># function definitions</span></span>
 <span></span>
 <span><span class="va">run_task</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">5L</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    colors <span class="op">=</span> <span class="fu">aRtsy</span><span class="fu">::</span><span class="fu">colorPalette</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"random"</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
 <span>    angle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, min <span class="op">=</span> <span class="op">-</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span>, max <span class="op">=</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span><span class="op">)</span>,</span>
@@ -219,7 +377,8 @@ updates 5 at a time, limited by the number of available daemons.</p>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="va">tasks</span> <span class="op">==</span> <span class="fl">0L</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="st">"All tasks completed."</span></span>
 <span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%d task%s in progress at %s"</span>, <span class="va">tasks</span>, <span class="kw">if</span> <span class="op">(</span><span class="va">tasks</span> <span class="op">&gt;</span> <span class="fl">1L</span><span class="op">)</span> <span class="st">"s"</span> <span class="kw">else</span> <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/strptime.html" class="external-link">format.POSIXct</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%d task%s in progress at %s"</span>,</span>
+<span>            <span class="va">tasks</span>, <span class="kw">if</span> <span class="op">(</span><span class="va">tasks</span> <span class="op">&gt;</span> <span class="fl">1L</span><span class="op">)</span> <span class="st">"s"</span> <span class="kw">else</span> <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/strptime.html" class="external-link">format.POSIXct</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
 <span><span class="op">}</span></span>
 <span></span>
@@ -264,38 +423,30 @@ updates 5 at a time, limited by the number of available daemons.</p>
 <span></span>
 <span><span class="va">app</span> <span class="op">&lt;-</span> <span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># mirai setup - 5 local daemons with dispatcher</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">5L</span><span class="op">)</span>, <span class="fu">runApp</span><span class="op">(</span><span class="va">app</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co"># run app using 3 local daemons</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, <span class="fu">runApp</span><span class="op">(</span><span class="va">app</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><em>Thanks to Daniel Woodie and William Landau for providing the
-original example on which this is based. Please see <a href="https://wlandau.github.io/crew/articles/shiny.html" class="external-link uri">https://wlandau.github.io/crew/articles/shiny.html</a> which
-also has examples of the fantastic artwork produced.</em></p>
+original example on which this is based. Please see <a href="https://wlandau.github.io/crew/articles/shiny.html" class="external-link uri">https://wlandau.github.io/crew/articles/shiny.html</a>.</em></p>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-      </div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Charlie Gao.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Charlie Gao.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 

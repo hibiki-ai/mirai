@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="mirai">
 <title>mirai - Minimalist Async Evaluation Framework for R • mirai</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -12,12 +13,11 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="mirai - Minimalist Async Evaluation Framework for R">
 <meta property="og:description" content="mirai">
 <meta property="og:image" content="https://shikokuchuo.net/mirai/logo.png">
@@ -26,94 +26,78 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">mirai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.13.2</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">mirai</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../articles/mirai.html">Get started</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="active nav-item">
+  <a class="nav-link" href="../articles/mirai.html">Get started</a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/parallel.html">mirai - Parallel Integration</a>
-    </li>
-    <li>
-      <a href="../articles/plumber.html">mirai - Plumber Integration</a>
-    </li>
-    <li>
-      <a href="../articles/promises.html">mirai - Promises Integration</a>
-    </li>
-    <li>
-      <a href="../articles/shiny.html">mirai - Shiny Integration</a>
-    </li>
-    <li>
-      <a href="../articles/torch.html">mirai - Torch Integration</a>
-    </li>
-  </ul>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/databases.html">mirai - Databases and Arrow</a>
+    <a class="dropdown-item" href="../articles/parallel.html">mirai - Parallel Integration</a>
+    <a class="dropdown-item" href="../articles/plumber.html">mirai - Plumber Integration</a>
+    <a class="dropdown-item" href="../articles/promises.html">mirai - Promises Integration</a>
+    <a class="dropdown-item" href="../articles/shiny.html">mirai - Shiny Integration</a>
+    <a class="dropdown-item" href="../articles/torch.html">mirai - Torch Integration</a>
+  </div>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/shikokuchuo/mirai/" class="external-link">
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/shikokuchuo/mirai/">
     <span class="fa fa-github"></span>
      
   </a>
 </li>
-<li>
-  <a href="https://shikokuchuo.net/" class="external-link">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://shikokuchuo.net/">
     <span class="fa fa-cube"></span>
      
   </a>
 </li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+    
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
-      
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>mirai - Minimalist Async Evaluation Framework
-for R</h1>
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>mirai - Minimalist Async Evaluation Framework for R</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/shikokuchuo/mirai/blob/HEAD/vignettes/mirai.Rmd" class="external-link"><code>vignettes/mirai.Rmd</code></a></small>
-      <div class="hidden name"><code>mirai.Rmd</code></div>
-
+      <div class="d-none name"><code>mirai.Rmd</code></div>
     </div>
 
     
@@ -121,7 +105,6 @@ for R</h1>
 <div class="section level3">
 <h3 id="table-of-contents">Table of Contents<a class="anchor" aria-label="anchor" href="#table-of-contents"></a>
 </h3>
-<p><a href="https://shikokuchuo.net/mirai/" alt="mirai"><img src="../reference/figures/logo.png" alt="mirai logo" align="right" width="120"></a></p>
 <ol style="list-style-type: decimal">
 <li><a href="#example-1-compute-intensive-operations">Example 1:
 Compute-intensive Operations</a></li>
@@ -178,12 +161,12 @@ operation is ongoing.</p>
 result.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m</span><span class="op">$</span><span class="va">data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  num [1:100000000] -2.68 0.139 0.886 -0.482 0.118 ...</span></span></code></pre></div>
+<span><span class="co">#&gt;  num [1:100000000] 1.404 -2.066 0.355 -8.242 0.158 ...</span></span></code></pre></div>
 <p>Alternatively, explicitly call and wait for the result using
 <code><a href="../reference/call_mirai.html">call_mirai()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/call_mirai.html">call_mirai</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">$</span><span class="va">data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  num [1:100000000] -2.68 0.139 0.886 -0.482 0.118 ...</span></span></code></pre></div>
+<span><span class="co">#&gt;  num [1:100000000] 1.404 -2.066 0.355 -8.242 0.158 ...</span></span></code></pre></div>
 <p>For easy programmatic use of <code><a href="../reference/mirai.html">mirai()</a></code>, ‘.expr’ accepts a
 pre-constructed language object, and also a list of named arguments
 passed via ‘.args’. So, the following would be equivalent to the
@@ -199,7 +182,7 @@ above:</p>
 <span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span>.expr <span class="op">=</span> <span class="va">expr</span>, .args <span class="op">=</span> <span class="va">args</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/call_mirai.html">call_mirai</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">$</span><span class="va">data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  num [1:100000000] -1.038 6.588 11.445 0.617 -3.078 ...</span></span></code></pre></div>
+<span><span class="co">#&gt;  num [1:100000000] -3.573 3.841 0.349 -0.359 -0.55 ...</span></span></code></pre></div>
 <p><a href="#table-of-contents">« Back to ToC</a></p>
 </div>
 <div class="section level3">
@@ -211,17 +194,16 @@ blocked.</p>
 synchronously without disrupting the execution flow.</p>
 <p>Cache data in memory and use <code><a href="../reference/mirai.html">mirai()</a></code> to perform periodic
 write operations concurrently in a separate process.</p>
-<p>Below, ‘.args’ is used to pass a list of objects already present in
-the calling environment to the mirai by name. This is an alternative use
-of ‘.args’, and may be combined with <code>...</code> to also pass in
-<code>name = value</code> pairs.</p>
+<p>Below, ‘.args’ is used to pass <code><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment()</a></code>, which is
+the calling environment. This provides a convenient method of passing in
+existing objects.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shikokuchuo.net/mirai/">mirai</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1e6</span><span class="op">)</span></span>
 <span><span class="va">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span><span class="va">x</span>, file <span class="op">=</span> <span class="va">file</span><span class="op">)</span>, .args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">file</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span><span class="va">x</span>, file <span class="op">=</span> <span class="va">file</span><span class="op">)</span>, .args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>A ‘mirai’ object is returned immediately.</p>
 <p><code><a href="../reference/unresolved.html">unresolved()</a></code> may be used in control flow statements to
 perform actions which depend on resolution of the ‘mirai’, both before
@@ -267,10 +249,10 @@ bring down the entire pipeline.</p>
 <span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
-<span>  <span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="fu">run_iteration</span><span class="op">(</span><span class="va">i</span><span class="op">)</span>, .args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">run_iteration</span>, <span class="va">i</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="fu">run_iteration</span><span class="op">(</span><span class="va">i</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="kw">while</span> <span class="op">(</span><span class="fu"><a href="../reference/is_mirai_error.html">is_error_value</a></span><span class="op">(</span><span class="fu"><a href="../reference/call_mirai.html">call_mirai</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">$</span><span class="va">data</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">m</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
-<span>    <span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="fu">run_iteration</span><span class="op">(</span><span class="va">i</span><span class="op">)</span>, .args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">run_iteration</span>, <span class="va">i</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="fu">run_iteration</span><span class="op">(</span><span class="va">i</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">m</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
 <span></span>
@@ -278,10 +260,9 @@ bring down the entire pipeline.</p>
 <span><span class="co">#&gt; iteration 1 successful</span></span>
 <span><span class="co">#&gt; iteration 2 successful</span></span>
 <span><span class="co">#&gt; iteration 3 successful</span></span>
-<span><span class="co">#&gt; Error: random error</span></span>
-<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; iteration 4 successful</span></span>
 <span><span class="co">#&gt; iteration 5 successful</span></span>
+<span><span class="co">#&gt; Error: random error</span></span>
 <span><span class="co">#&gt; iteration 6 successful</span></span>
 <span><span class="co">#&gt; iteration 7 successful</span></span>
 <span><span class="co">#&gt; iteration 8 successful</span></span>
@@ -320,12 +301,12 @@ daemon.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $daemons</span></span>
 <span><span class="co">#&gt;                                     i online instance assigned complete</span></span>
-<span><span class="co">#&gt; abstract://05eb1672dc7a072adc828ee5 1      1        1        0        0</span></span>
-<span><span class="co">#&gt; abstract://e133d32015e04b140adbf934 2      1        1        0        0</span></span>
-<span><span class="co">#&gt; abstract://f3e06991621650974544ddb8 3      1        1        0        0</span></span>
-<span><span class="co">#&gt; abstract://ccd54d9f613c1a80f28ae3f2 4      1        1        0        0</span></span>
-<span><span class="co">#&gt; abstract://8bc4624744121f1fd6599293 5      1        1        0        0</span></span>
-<span><span class="co">#&gt; abstract://3efcb42340d189f68d23d921 6      1        1        0        0</span></span></code></pre></div>
+<span><span class="co">#&gt; abstract://bbe3cddf1da63d481107a9cd 1      1        1        0        0</span></span>
+<span><span class="co">#&gt; abstract://faea54818c505c18924f75ff 2      1        1        0        0</span></span>
+<span><span class="co">#&gt; abstract://a863f62bc883b23f8294a1cb 3      1        1        0        0</span></span>
+<span><span class="co">#&gt; abstract://3bf84e05452b61c79ddd953d 4      1        1        0        0</span></span>
+<span><span class="co">#&gt; abstract://4fe308894ac570cd3bc80501 5      1        1        0        0</span></span>
+<span><span class="co">#&gt; abstract://1f45497f52956eaa5e0ecab1 6      1        1        0        0</span></span></code></pre></div>
 <p>The default <code>dispatcher = TRUE</code> creates a
 <code><a href="../reference/dispatcher.html">dispatcher()</a></code> background process that connects to individual
 daemon processes on the local machine. This ensures that tasks are
@@ -359,7 +340,7 @@ URL at <code>$daemons</code>.</p>
 <span><span class="co">#&gt; [1] 6</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $daemons</span></span>
-<span><span class="co">#&gt; [1] "abstract://a6c6313a3dcf7f4c06b57381"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "abstract://760959fce1a43cf759cb7737"</span></span></code></pre></div>
 <p>This implementation sends tasks immediately, and ensures that tasks
 are evenly-distributed amongst daemons. This means that optimal
 scheduling is not guaranteed as the duration of tasks cannot be known
@@ -491,7 +472,7 @@ directly to the host process. The host listens at a single URL, and
 distributes tasks to all connected daemons.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span>url <span class="op">=</span> <span class="fu"><a href="../reference/host_url.html">host_url</a></span><span class="op">(</span><span class="op">)</span>, dispatcher <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "tcp://hostname:42493"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "tcp://hostname:40783"</span></span></code></pre></div>
 <p>Note that above, calling <code><a href="../reference/host_url.html">host_url()</a></code> without a port value
 uses the default of ‘0’. This is a wildcard value that will
 automatically cause a free ephemeral port to be assigned. The actual
@@ -508,7 +489,7 @@ daemons.</p>
 <span><span class="co">#&gt; [1] 0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $daemons</span></span>
-<span><span class="co">#&gt; [1] "tcp://hostname:42493"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "tcp://hostname:40783"</span></span></code></pre></div>
 <p>To reset all connections and revert to default behaviour:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
@@ -593,10 +574,10 @@ return values may be copy / pasted directly to a remote machine.</p>
 <span></span>
 <span><span class="fu"><a href="../reference/launch_local.html">launch_remote</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]</span></span>
-<span><span class="co">#&gt; Rscript -e "mirai::daemon('tcp://hostname:45599',rs=c(10407,446889922,-1689933733,-2001768480,-854919583,-1230292818,833304919))"</span></span>
+<span><span class="co">#&gt; Rscript -e "mirai::daemon('tcp://hostname:44859',rs=c(10407,-379092346,-1408609457,-1647396540,-1758015627,-1360916046,-1751108213))"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [2]</span></span>
-<span><span class="co">#&gt; Rscript -e "mirai::daemon('tcp://hostname:42319',rs=c(10407,-1215190515,-235129500,2038791958,-1541298427,-767345579,1037423818))"</span></span>
+<span><span class="co">#&gt; Rscript -e "mirai::daemon('tcp://hostname:34861',rs=c(10407,-1979608343,-1904324838,492712796,997246437,-1788982248,-1751150158))"</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0</span></span></code></pre></div>
@@ -634,37 +615,37 @@ full shell command to launch a daemon, including the correctly specified
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/launch_local.html">launch_remote</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]</span></span>
-<span><span class="co">#&gt; Rscript -e "mirai::daemon('wss://hostname:33491/1',tls=c('-----BEGIN CERTIFICATE-----</span></span>
+<span><span class="co">#&gt; Rscript -e "mirai::daemon('wss://hostname:45039/1',tls=c('-----BEGIN CERTIFICATE-----</span></span>
 <span><span class="co">#&gt; MIIFNzCCAx+gAwIBAgIBATANBgkqhkiG9w0BAQsFADAzMREwDwYDVQQDDAhrdW1h</span></span>
 <span><span class="co">#&gt; bW90bzERMA8GA1UECgwITmFub25leHQxCzAJBgNVBAYTAkpQMB4XDTAxMDEwMTAw</span></span>
 <span><span class="co">#&gt; MDAwMFoXDTMwMTIzMTIzNTk1OVowMzERMA8GA1UEAwwIa3VtYW1vdG8xETAPBgNV</span></span>
 <span><span class="co">#&gt; BAoMCE5hbm9uZXh0MQswCQYDVQQGEwJKUDCCAiIwDQYJKoZIhvcNAQEBBQADggIP</span></span>
-<span><span class="co">#&gt; ADCCAgoCggIBAMb8rlDPEilBWwo049G6SQRTeDWtvB8KBHvn/0RGU/S36/UI5xZd</span></span>
-<span><span class="co">#&gt; 5zDWTDZ4ixYtCNDBKt8OqEmJlOSIQme7p+7EIIw398E5QtY6VF+vn2NqzCQ2qvZt</span></span>
-<span><span class="co">#&gt; YTLPUkCaM4jIi7q72iu7KbMjtUcTeK2/XdD04meFeViixcPBOdx3MgYZHIiRR/1T</span></span>
-<span><span class="co">#&gt; S6QYcrzK432MpBrX/mFeuMZsh/d5J+dmsvZdyAaeda2Q9YgJZSu6CMi0dezC+gOZ</span></span>
-<span><span class="co">#&gt; vvkdAsoP2LOu/0/C/uauQKJKVa/0H7TJyNdOzyqTd5LhAst4mYYWffUk5QJHZbXv</span></span>
-<span><span class="co">#&gt; TApSBq7GRnZIxdmV+SJezY0P41ACwDIz1DSgH6gbaNhEs6AUoN9SkEjAr/Mwo45b</span></span>
-<span><span class="co">#&gt; QJ5rZ/57oRHIDQ1XYWro6LfrIUqz4nX+qXE9OdZAQARtRiAgPhAVl5sF8VAkdCOh</span></span>
-<span><span class="co">#&gt; UF0lvlVKnI9LW5XQEB3mKEo1nfnKD7n6RNW1X0iLQZqekYSQJDc1Vco5fWYK50tO</span></span>
-<span><span class="co">#&gt; CROFfa72CMsb17kRTiLVUCmoD/VdA4rkwhfTe5UmhnQ3B3RPhFPSCDKQ93/VcYjh</span></span>
-<span><span class="co">#&gt; UuePvvPXMWrGEnI4gT7MxMAkVOmni7F2CDAQBq5TMCYv+B9iKXSusSNk0c9Uhf15</span></span>
-<span><span class="co">#&gt; qde0D9O3+6VR0PHocX56Hg2DMTIuttioq2OvTXSSNEQQAMNyUe/MA1L7AgMBAAGj</span></span>
-<span><span class="co">#&gt; VjBUMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFDeng666fTM2A6H/ty0V</span></span>
-<span><span class="co">#&gt; IHaXh8UrMB8GA1UdIwQYMBaAFDeng666fTM2A6H/ty0VIHaXh8UrMA0GCSqGSIb3</span></span>
-<span><span class="co">#&gt; DQEBCwUAA4ICAQAmrZAEgNlGhbdF+I4M7PS+yTAZ7j96aWBG2uEORhZzPmS02J9y</span></span>
-<span><span class="co">#&gt; J6Ux8pBKFLrfg34s+wF+WvJhHlz9xr0aeTm+XUOMwl5v5lorNBhE4c/GSsWXHc9h</span></span>
-<span><span class="co">#&gt; ThjedVruHRq5/KQ27rQ8uAk3bnWiaKTnDDE5Ac9Vo7g/rqRicLBUn2w3HQYC43FZ</span></span>
-<span><span class="co">#&gt; BfJWepIM5VU7muLjdlo+447jfbjc5iq1e2cdEqz0GBgZ5UOx+DqEpia49yuxaKia</span></span>
-<span><span class="co">#&gt; JmdNjeWBfMGcM1V7+9av4YQXTEXBRmK7wCyz6uvL70nmEw9Grs7NzlLBPW3iMBCU</span></span>
-<span><span class="co">#&gt; BDxAntwSzhlwJKAkhp07nh7g/qyP0+ExvJtfErxfn6X8funJ8ihBO9m1VGX2iVHt</span></span>
-<span><span class="co">#&gt; KXja6fec4iwco3xaeaxVCHQWTF5Pp3c5evBP75GWOl4CJZbN9/X6UjDFiOUNb+ZS</span></span>
-<span><span class="co">#&gt; PFaK58vgDfv9kNScrYp3caTSNU0bb4V8JyUM5jWMDz6XCeLA796fDZe8mUiCYHgz</span></span>
-<span><span class="co">#&gt; 7/Es6krqyxsb7eig9ZPYr7/VfsbsIMejDA3j/Un3UjPnnD96k/e2jHALADHzqjyK</span></span>
-<span><span class="co">#&gt; IfT0oQdVDQae2JkxuJbjpk1JtOQQaoEfSfI7tvDUypMJ4tg8kbPYSpeJbXJ0H/xA</span></span>
-<span><span class="co">#&gt; hz/EwB06SmJRirkaNVNwb38tqICv9tVQeoG8DCbhFPm9iYaQAS401u7vOw==</span></span>
+<span><span class="co">#&gt; ADCCAgoCggIBAMwP7bVz5ELkUQPAF5+WBHXTq7BGAHP51asxyfnb8RscvAKKeRnO</span></span>
+<span><span class="co">#&gt; rvADgGPYgYTllHUp3F05wDbWJAZoOhqmug6KyLTYZoYCpJwEWWPzob09orxeRXQL</span></span>
+<span><span class="co">#&gt; uNL82GJwfQBUOTcJck0qSKnNZfz38FumsCffN/8JrI6yP5cNpqbotTr6O0fX4d1q</span></span>
+<span><span class="co">#&gt; 0GIk/dEHwIIXzaQHGuJ8QztJaVfZim/b1DgxbD88QQNxZRgyh3BKybwsl1sEk0TB</span></span>
+<span><span class="co">#&gt; v8k0a4gX0H5VogXT9BjkOCBJ+thjtHtUBkDdO0BtlTaHzNpBHkC40NBpkzArQVN7</span></span>
+<span><span class="co">#&gt; UmIA7q/3vUusP+sVzGrV/X7bRKcKYH5l2Ttdrq+2fYwNFtm81qsxeLUV26WX1j+F</span></span>
+<span><span class="co">#&gt; yhIJQHnRcrKEjG2CONekD7bZbW+zJqoDtPosQz7+vU8nPpWhta17gql90YSELO9G</span></span>
+<span><span class="co">#&gt; CHzPRLI/NUKWNB+xHyd0o3z6IRPrudyarrBD+C6PthNnRxhmnULaS7wUcLFflxGJ</span></span>
+<span><span class="co">#&gt; 7+7vWO2xLFoU5tFvdR9KEQXRDOZgqFmO+qBMHozGOAw05lCJ/OJMl/GXmthbCWg6</span></span>
+<span><span class="co">#&gt; TIZ9txcBJFJyWIZ+Okymtnnqy7/bWoA8g6nPp7Uh8a7fjujSPyQFPXYX5S6XiqaR</span></span>
+<span><span class="co">#&gt; poVzwTzp4P0/3ijw9Ey89MRRc/70NfKDWqtlAd3LRmKzwU68/7VNIKQZAgMBAAGj</span></span>
+<span><span class="co">#&gt; VjBUMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFJpAfGLu1MwpWe7C09bO</span></span>
+<span><span class="co">#&gt; AyC7GLF1MB8GA1UdIwQYMBaAFJpAfGLu1MwpWe7C09bOAyC7GLF1MA0GCSqGSIb3</span></span>
+<span><span class="co">#&gt; DQEBCwUAA4ICAQBORBAkUTRs8IErAXI0iJsJwqReFVzycljME03wOCLbh7Xdf6e2</span></span>
+<span><span class="co">#&gt; w55M37iUghJDaDHcf6DKlGWLREJPFXN8YEKGYM4UkNhD5ewJAYjIHtAhQqlm8K7i</span></span>
+<span><span class="co">#&gt; g0cwR3dABYw8xJ8KF4WyTgpLk9iJ3Rzx5rneJHlMFyM2W7lyIz5+7FnZeD+W2Yg0</span></span>
+<span><span class="co">#&gt; CSTJVzWYuwxYPwNLip7zCAxxAs1SQTF086HQANiu3FLk0hM//2ud5pR2LCCfOppj</span></span>
+<span><span class="co">#&gt; UToCZVDUUgFjdWkh5xwQhV3SfSUEkt/f9HoN9IrOU4oj32lPaGFYKBRBuHBevFHJ</span></span>
+<span><span class="co">#&gt; rv0PxHrntCFQvz56loLNIcwZRnqQzGxwBw7olwR97XdBzZ9n4ADRF27EY0LGQPNt</span></span>
+<span><span class="co">#&gt; j223WJ+T62Ad16iccwgptlciMks2HKfIgUMoDNixhE5kPN4idJeeAK9/vnoBxOah</span></span>
+<span><span class="co">#&gt; PhYRZtDTS5RXbvwXDSfOdg/xRuWmBQdrssKjipdclHl5KXBlSVTDfEwM1CrXJGng</span></span>
+<span><span class="co">#&gt; u9VUcqnCJ3JkXnqA9BryKURX4VNRhuRhqehlL9EKrXG0zk5o1HC3lMsTN3XA900l</span></span>
+<span><span class="co">#&gt; 1cXnbHjccH+y4nG1egxJ2U7tdVjHNvCcCMozf+CLJ/f4ABuwCaM9Dl/TwylbR2xy</span></span>
+<span><span class="co">#&gt; LGStnVw0Rh9R4RhXksAxFaSj0V0O0M2bBwMhN6YMyWyKe++FS5JLwxnbqw==</span></span>
 <span><span class="co">#&gt; -----END CERTIFICATE-----</span></span>
-<span><span class="co">#&gt; ',''),rs=c(10407,-1323640950,117087107,-334024984,1792694217,-15302410,-360201473))"</span></span></code></pre></div>
+<span><span class="co">#&gt; ',''),rs=c(10407,-316342221,-942227496,-1366452231,-1877780634,-1303172433,812847396))"</span></span></code></pre></div>
 <p>The printed value may be deployed directly on a remote machine.</p>
 <p><a href="#table-of-contents">« Back to ToC</a></p>
 </div>
@@ -802,16 +783,16 @@ accessible at <code>$stack.trace</code> on the error object.</p>
 <span><span class="co">#&gt; [[2]]</span></span>
 <span><span class="co">#&gt; [1] "f(1)"</span></span></code></pre></div>
 <p>If a daemon instance is sent a user interrupt, the mirai will resolve
-to an empty character string of class ‘miraiInterrupt’ and ‘errorValue’.
+to an object of class ‘miraiInterrupt’ and ‘errorValue’.
 <code><a href="../reference/is_mirai_error.html">is_mirai_interrupt()</a></code> may be used to test for such
 interrupts.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/is_mirai_error.html">is_mirai_interrupt</a></span><span class="op">(</span><span class="va">m2</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 <p>If execution of a mirai surpasses the timeout set via the ‘.timeout’
-argument, the mirai will resolve to an ‘errorValue’. This can, amongst
-other things, guard against mirai processes that have the potential to
-hang and never return.</p>
+argument, the mirai will resolve to an ‘errorValue’ of 5L (timed out).
+This can, amongst other things, guard against mirai processes that have
+the potential to hang and never return.</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="fu">nanonext</span><span class="fu">::</span><span class="fu"><a href="https://shikokuchuo.net/nanonext/reference/msleep.html" class="external-link">msleep</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>, .timeout <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/call_mirai.html">call_mirai</a></span><span class="op">(</span><span class="va">m4</span><span class="op">)</span><span class="op">$</span><span class="va">data</span></span>
@@ -896,31 +877,24 @@ used for serialization in <a href="https://torch.mlverse.org/" class="external-l
 vignette</a> for further examples.</p>
 <p><a href="#table-of-contents">« Back to ToC</a></p>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-      </div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Charlie Gao.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Charlie Gao.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 
