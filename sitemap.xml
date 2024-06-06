@@ -49,6 +49,9 @@
     <loc>https://shikokuchuo.net/mirai/reference/call_mirai.html</loc>
   </url>
   <url>
+    <loc>https://shikokuchuo.net/mirai/reference/collect_mirai.html</loc>
+  </url>
+  <url>
     <loc>https://shikokuchuo.net/mirai/reference/daemon.html</loc>
   </url>
   <url>
@@ -59,6 +62,9 @@
   </url>
   <url>
     <loc>https://shikokuchuo.net/mirai/reference/dot-daemon.html</loc>
+  </url>
+  <url>
+    <loc>https://shikokuchuo.net/mirai/reference/dot-progress.html</loc>
   </url>
   <url>
     <loc>https://shikokuchuo.net/mirai/reference/everywhere.html</loc>
@@ -86,6 +92,9 @@
   </url>
   <url>
     <loc>https://shikokuchuo.net/mirai/reference/mirai.html</loc>
+  </url>
+  <url>
+    <loc>https://shikokuchuo.net/mirai/reference/mirai_map.html</loc>
   </url>
   <url>
     <loc>https://shikokuchuo.net/mirai/reference/nextstream.html</loc>

@@ -15,10 +15,11 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Source_Sans_Pro-0.4.9/font.css" rel="stylesheet">
+<link href="../deps/Source_Code_Pro-0.4.9/font.css" rel="stylesheet">
+<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="mirai - Torch Integration">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="mirai - Torch Integration">
 <meta property="og:description" content="mirai">
 <meta property="og:image" content="https://shikokuchuo.net/mirai/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -34,7 +35,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">mirai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,8 +130,9 @@ package available on all daemons for convenience (optional).</p></li>
 <span>              class <span class="op">=</span> <span class="st">"torch_tensor"</span>,</span>
 <span>              vec <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1</span></span>
-<span><span class="fu"><a href="../reference/everywhere.html">everywhere</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://torch.mlverse.org/docs" class="external-link">torch</a></span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/everywhere.html">everywhere</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://torch.mlverse.org/docs" class="external-link">torch</a></span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="example-usage">Example Usage<a class="anchor" aria-label="anchor" href="#example-usage"></a>
@@ -140,7 +142,7 @@ package available on all daemons for convenience (optional).</p></li>
 <p>A set of model parameters is also specified.</p>
 <p>The model specification and parameters are then passed to and
 initialized within a ‘mirai’.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">nn_module</span><span class="op">(</span></span>
 <span>  initialize <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">in_size</span>, <span class="va">out_size</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">self</span><span class="op">$</span><span class="va">conv1</span> <span class="op">&lt;-</span> <span class="fu">nn_conv2d</span><span class="op">(</span><span class="va">in_size</span>, <span class="va">out_size</span>, <span class="fl">5</span><span class="op">)</span></span>
@@ -159,55 +161,55 @@ initialized within a ‘mirai’.</p>
 <span></span>
 <span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">params</span><span class="op">)</span>, model <span class="op">=</span> <span class="va">model</span>, params <span class="op">=</span> <span class="va">params</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/call_mirai.html">call_mirai</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">$</span><span class="va">data</span></span>
+<span><span class="va">m</span><span class="op">[</span><span class="op">]</span></span>
 <span><span class="co">#&gt; An `nn_module` containing 1,040 parameters.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Modules ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">#&gt; • conv1: &lt;nn_conv2d&gt; #520 parameters</span></span>
 <span><span class="co">#&gt; • conv2: &lt;nn_conv2d&gt; #520 parameters</span></span></code></pre></div>
 <p>The returned model is an object containing many tensor elements.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">parameters</span><span class="op">$</span><span class="va">conv1.weight</span></span>
 <span><span class="co">#&gt; torch_tensor</span></span>
 <span><span class="co">#&gt; (1,1,.,.) = </span></span>
-<span><span class="co">#&gt;   0.1682  0.1571  0.0880  0.1221 -0.0901</span></span>
-<span><span class="co">#&gt;   0.1598  0.0815  0.1215  0.0138 -0.1608</span></span>
-<span><span class="co">#&gt;  -0.0636  0.1779 -0.0090 -0.0544  0.0573</span></span>
-<span><span class="co">#&gt;   0.0618 -0.1297  0.1649 -0.0272 -0.1092</span></span>
-<span><span class="co">#&gt;  -0.1108  0.0749 -0.1585 -0.1256  0.1463</span></span>
+<span><span class="co">#&gt;  -0.0945  0.0226 -0.1813  0.1295 -0.1442</span></span>
+<span><span class="co">#&gt;  -0.1914  0.0034  0.1511  0.1644  0.1639</span></span>
+<span><span class="co">#&gt;   0.0129  0.1884  0.1502  0.0261  0.0552</span></span>
+<span><span class="co">#&gt;   0.0741 -0.1159 -0.1532 -0.0110  0.0023</span></span>
+<span><span class="co">#&gt;   0.0925 -0.0683  0.0620  0.0462  0.0830</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; (2,1,.,.) = </span></span>
-<span><span class="co">#&gt;   0.1313 -0.1575 -0.0257  0.1861 -0.0727</span></span>
-<span><span class="co">#&gt;  -0.1925  0.1271  0.0439 -0.0086 -0.1037</span></span>
-<span><span class="co">#&gt;   0.0715  0.0691  0.1181 -0.1048  0.0228</span></span>
-<span><span class="co">#&gt;   0.0806  0.1871 -0.0866 -0.1398  0.1804</span></span>
-<span><span class="co">#&gt;   0.1763 -0.1477 -0.1943  0.1088 -0.1668</span></span>
+<span><span class="co">#&gt;   0.1528 -0.1687 -0.1547  0.1126  0.0340</span></span>
+<span><span class="co">#&gt;  -0.0250  0.1119  0.1786 -0.0537  0.1692</span></span>
+<span><span class="co">#&gt;  -0.0587  0.0618 -0.1933  0.1068 -0.0147</span></span>
+<span><span class="co">#&gt;  -0.0443  0.0896  0.0535  0.0343 -0.0055</span></span>
+<span><span class="co">#&gt;  -0.1542 -0.1680 -0.0273 -0.1850 -0.0300</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; (3,1,.,.) = </span></span>
-<span><span class="co">#&gt;   0.1692  0.1886  0.0159 -0.0523 -0.1667</span></span>
-<span><span class="co">#&gt;  -0.0769  0.1226 -0.1706  0.0817 -0.1353</span></span>
-<span><span class="co">#&gt;  -0.1113 -0.0852  0.0073 -0.0749 -0.1621</span></span>
-<span><span class="co">#&gt;   0.0164 -0.0800  0.1728 -0.1919  0.1623</span></span>
-<span><span class="co">#&gt;   0.0064 -0.0127  0.0406  0.1909 -0.0757</span></span>
+<span><span class="co">#&gt;  -0.0961  0.0569  0.0227 -0.0650  0.1230</span></span>
+<span><span class="co">#&gt;  -0.0851 -0.1994  0.1873  0.0622 -0.1484</span></span>
+<span><span class="co">#&gt;   0.0607 -0.0312 -0.1399  0.0159  0.0106</span></span>
+<span><span class="co">#&gt;   0.0358  0.1184 -0.1026 -0.1897 -0.1235</span></span>
+<span><span class="co">#&gt;  -0.0728  0.0687  0.1972  0.1805  0.1983</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; (4,1,.,.) = </span></span>
-<span><span class="co">#&gt;   0.1336 -0.0816 -0.1282 -0.0812  0.0911</span></span>
-<span><span class="co">#&gt;  -0.1254 -0.1583 -0.1503 -0.1723  0.0713</span></span>
-<span><span class="co">#&gt;  -0.0995  0.0038  0.1080 -0.0095 -0.1887</span></span>
-<span><span class="co">#&gt;   0.0842  0.0617 -0.0039 -0.0643 -0.0611</span></span>
-<span><span class="co">#&gt;  -0.1795  0.0070 -0.0341 -0.0909 -0.1070</span></span>
+<span><span class="co">#&gt;   0.0907 -0.1105  0.0089 -0.0638 -0.1214</span></span>
+<span><span class="co">#&gt;   0.0885  0.1434  0.1329 -0.1567  0.0805</span></span>
+<span><span class="co">#&gt;  -0.0676  0.1120  0.1550 -0.0961 -0.0334</span></span>
+<span><span class="co">#&gt;  -0.0973 -0.1493  0.0574 -0.1552 -0.1457</span></span>
+<span><span class="co">#&gt;   0.0700  0.0073  0.1351 -0.1444 -0.0336</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; (5,1,.,.) = </span></span>
-<span><span class="co">#&gt;   0.0207 -0.0057 -0.1417 -0.0102  0.1322</span></span>
+<span><span class="co">#&gt;  -0.0821 -0.1285 -0.1629 -0.1830 -0.1660</span></span>
 <span><span class="co">#&gt; ... [the output was truncated (use n=-1 to disable)]</span></span>
 <span><span class="co">#&gt; [ CPUFloatType{20,1,5,5} ][ requires_grad = TRUE ]</span></span></code></pre></div>
 <p>It is usual for model parameters to then be passed to an
 optimiser.</p>
 <p>This can also be initialized within a ‘mirai’ process.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">optim</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="fu">optim_rmsprop</span><span class="op">(</span>params <span class="op">=</span> <span class="va">params</span><span class="op">)</span>, params <span class="op">=</span> <span class="va">m</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">parameters</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/call_mirai.html">call_mirai</a></span><span class="op">(</span><span class="va">optim</span><span class="op">)</span><span class="op">$</span><span class="va">data</span></span>
+<span><span class="va">optim</span><span class="op">[</span><span class="op">]</span></span>
 <span><span class="co">#&gt; &lt;optim_rmsprop&gt;</span></span>
 <span><span class="co">#&gt;   Inherits from: &lt;torch_optimizer&gt;</span></span>
 <span><span class="co">#&gt;   Public:</span></span>
@@ -222,9 +224,9 @@ optimiser.</p>
 <span><span class="co">#&gt;     step: function (closure = NULL) </span></span>
 <span><span class="co">#&gt;     zero_grad: function () </span></span>
 <span><span class="co">#&gt;   Private:</span></span>
-<span><span class="co">#&gt;     step_helper: function (closure, loop_fun)</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     step_helper: function (closure, loop_fun)</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0</span></span></code></pre></div>
 <p>Above, tensors and complex objects containing tensors were passed
 seamlessly between host and daemon processes, in the same way as any
