@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">mirai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,6 +48,27 @@
       <small>Source: <a href="https://github.com/shikokuchuo/mirai/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.0.1" id="mirai-201">mirai 2.0.1<a class="anchor" aria-label="anchor" href="#mirai-201"></a></h2>
+<div class="section level5">
+<h5 id="updates-2-0-1">Updates<a class="anchor" aria-label="anchor" href="#updates-2-0-1"></a></h5>
+<ul><li>
+<code><a href="../reference/mirai_map.html">mirai_map()</a></code> collection option improvements:
+<ul><li>The cli package is used, if installed, for richer progress bars and error messages.</li>
+<li>
+<code>[.progress_cli]</code> is no longer a separate option.</li>
+<li>
+<code>[.stop]</code> now reports the index number that errored.</li>
+</ul></li>
+<li>
+<code><a href="../reference/collect_mirai.html">collect_mirai()</a></code> replaces ‘…’ with an ‘options’ argument, to which collection options should be supplied as a character vector. This avoids non-standard evaluation in this function.</li>
+<li>
+<code><a href="../reference/daemon.html">daemon()</a></code> now returns an integer exit code to indicate the reason for termination.</li>
+<li>Adds <code><a href="../reference/nextstream.html">nextcode()</a></code> to provide a human-readable translation of the exit codes returned by <code><a href="../reference/daemon.html">daemon()</a></code>.</li>
+<li>
+<code><a href="../reference/everywhere.html">everywhere()</a></code> now returns a list of at least one mirai regardless of the number of actual connections.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.0.0" id="mirai-200">mirai 2.0.0<a class="anchor" aria-label="anchor" href="#mirai-200"></a></h2><p class="text-muted">CRAN release: 2025-01-08</p>
 <div class="section level5">
