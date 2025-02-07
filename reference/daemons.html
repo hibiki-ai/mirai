@@ -17,7 +17,7 @@ configuration. By default, dispatcher ensures optimal scheduling."><meta propert
 
     <a class="navbar-brand me-2" href="../index.html">mirai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,7 +76,6 @@ configuration. By default, dispatcher ensures optimal scheduling.</p>
 <span>  remote <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  dispatcher <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  <span class="va">...</span>,</span>
-<span>  force <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  seed <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  serial <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  tls <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -120,13 +119,6 @@ section below).</p></dd>
 <code><a href="daemon.html">daemon</a></code> if launching daemons. These include ‘asyncdial’,
 ‘autoexit’, ‘cleanup’, ‘output’, ‘maxtasks’,
 ‘idletime’ and ‘walltime’.</p></dd>
-
-
-<dt id="arg-force">force<a class="anchor" aria-label="anchor" href="#arg-force"></a></dt>
-<dd><p>[default TRUE] logical value whether to always reset daemons and
-apply new settings for a compute profile, even if already set. If FALSE,
-applying new settings requires daemons to be explicitly reset first using
-<code>daemons(0)</code>.</p></dd>
 
 
 <dt id="arg-seed">seed<a class="anchor" aria-label="anchor" href="#arg-seed"></a></dt>
@@ -180,9 +172,10 @@ to use (each compute profile has its own independent set of daemons).</p></dd>
   background process for each request.</p></li>
 <li><p>Any unresolved ‘mirai’ will return an ‘errorValue’ 19
   (Connection reset) after a reset.</p></li>
-<li><p>Calling <code>daemons</code> with revised (or even the same) settings for the
-  same compute profile resets daemons before applying the new settings if
-  <code>force = TRUE</code>.</p></li>
+<li><p>Daemons must be reset before calling <code>daemons</code> with revised
+  settings for a compute profile. Daemons may be added at any time by using
+  <code><a href="launch_local.html">launch_local</a></code> or <code><a href="launch_local.html">launch_remote</a></code> without needing
+  to revise daemons settings.</p></li>
 </ul><p>If the host session ends, all connected dispatcher and daemon processes
 automatically exit as soon as their connections are dropped (unless the
 daemons were started with <code>autoexit = FALSE</code>). If a daemon is processing
@@ -190,8 +183,8 @@ a task, it will exit as soon as the task is complete.</p>
 <p>To reset persistent daemons started with <code>autoexit = FALSE</code>, use
 <code>daemons(NULL)</code> instead, which also sends exit signals to all connected
 daemons prior to resetting.</p>
-<p>For historical reasons, <code>daemons()</code> with no arguments returns the value
-of <code><a href="status.html">status</a></code>.</p>
+<p>For historical reasons, <code>daemons()</code> with no arguments (other than
+optionally ‘.compute’) returns the value of <code><a href="status.html">status</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="local-daemons">Local Daemons<a class="anchor" aria-label="anchor" href="#local-daemons"></a></h2>
@@ -212,15 +205,14 @@ connecting back to the host process, either directly or via dispatcher.</p>
 
 <p>By default <code>dispatcher = TRUE</code> launches a background process running
 <code><a href="dispatcher.html">dispatcher</a></code>. Dispatcher connects to daemons on behalf of
-the host and ensures optimal FIFO scheduling of tasks.</p>
-<p>Specifying <code>dispatcher = FALSE</code>, uses the default behaviour without
-additional dispatcher logic. In this case daemons connect directly to the
-host and tasks are distributed in a round-robin fashion. Optimal scheduling
-is not guaranteed as the duration of tasks cannot be known <em>a priori</em>,
-hence tasks can be queued at one daemon while other daemons remain idle.
-However, this provides the most resource-light approach, suited to working
-with similar-length tasks, or where concurrent tasks typically do not exceed
-available daemons.</p>
+the host, queues tasks, and ensures optimal scheduling.</p>
+<p>Specifying <code>dispatcher = FALSE</code>, daemons connect directly to the
+host and tasks are distributed in a round-robin fashion. As tasks are queued
+at each daemon, optimal scheduling is not guaranteed as the duration of each
+task cannot be known <em>a priori</em>. Tasks can be queued at one daemon while
+others remain idle. However, this provides the most resource-light approach,
+suited to working with similar-length tasks, or where concurrent tasks
+typically do not exceed available daemons.</p>
     </div>
     <div class="section level2">
     <h2 id="distributed-computing">Distributed Computing<a class="anchor" aria-label="anchor" href="#distributed-computing"></a></h2>
