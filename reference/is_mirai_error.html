@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">mirai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,24 +76,21 @@
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Is the object a ‘miraiError’. When execution in a ‘mirai’
-process fails, the error message is returned as a character string of class
-‘miraiError’ and ‘errorValue’. The elements of the original
-condition are accessible via <code>$</code> on the error object. A stack trace is
-also available at <code>$stack.trace</code>.</p>
-<p>Is the object a ‘miraiInterrupt’. When an ongoing ‘mirai’ is
-sent a user interrupt, it will resolve to an empty character string classed
-as ‘miraiInterrupt’ and ‘errorValue’.</p>
-<p>Is the object an ‘errorValue’, such as a ‘mirai’ timeout, a
-‘miraiError’ or a ‘miraiInterrupt’. This is a catch-all
-condition that includes all returned error values.</p>
+    <p>Is the object a 'miraiError'. When execution in a 'mirai' process fails, the
+error message is returned as a character string of class 'miraiError' and
+'errorValue'. The elements of the original condition are accessible via <code>$</code>
+on the error object. A stack trace is also available at <code>$stack.trace</code>.</p>
+<p>Is the object a 'miraiInterrupt'. When an ongoing 'mirai' is sent a user
+interrupt, it will resolve to an empty character string classed as
+'miraiInterrupt' and 'errorValue'.</p>
+<p>Is the object an 'errorValue', such as a 'mirai' timeout, a 'miraiError' or a
+'miraiInterrupt'. This is a catch-all condition that includes all returned
+error values.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="co"># Only run examples in interactive R sessions</span></span></span>
-<span class="r-in"><span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
 <span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="mirai.html">mirai</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="call_mirai.html">call_mirai</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">is_mirai_error</span><span class="op">(</span><span class="va">m</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span></span>
@@ -106,9 +103,7 @@ condition that includes all returned error values.</p>
 <span class="r-in"><span><span class="fu">is_mirai_error</span><span class="op">(</span><span class="va">m2</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">is_mirai_interrupt</span><span class="op">(</span><span class="va">m2</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">is_error_value</span><span class="op">(</span><span class="va">m2</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -11,7 +11,7 @@ over the rows of a dataframe or matrix."><meta property="og:image" content="http
 
     <a class="navbar-brand me-2" href="../index.html">mirai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,8 +74,8 @@ which case multiple map is performed over its rows.</p></dd>
 
 
 <dt id="arg--f">.f<a class="anchor" aria-label="anchor" href="#arg--f"></a></dt>
-<dd><p>a function to be applied to each element of <code>.x</code>, or row of
-<code>.x</code> as the case may be.</p></dd>
+<dd><p>a function to be applied to each element of <code>.x</code>, or row of <code>.x</code> as
+the case may be.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -84,16 +84,16 @@ referenced, but not defined, in <code>.f</code>.</p></dd>
 
 
 <dt id="arg--args">.args<a class="anchor" aria-label="anchor" href="#arg--args"></a></dt>
-<dd><p>(optional) further constant arguments to <code>.f</code>, provided as
-a list.</p></dd>
+<dd><p>(optional) further constant arguments to <code>.f</code>, provided as a
+list.</p></dd>
 
 
 <dt id="arg--promise">.promise<a class="anchor" aria-label="anchor" href="#arg--promise"></a></dt>
 <dd><p>(optional) if supplied, registers a promise against each
-mirai. Either a function, supplied to the ‘onFulfilled’ argument of
+mirai. Either a function, supplied to the <code>onFulfilled</code> argument of
 <code><a href="https://rstudio.github.io/promises/reference/then.html" class="external-link">promises::then()</a></code> or a list of 2 functions, supplied respectively to
-‘onFulfilled’ and ‘onRejected’ for <code><a href="https://rstudio.github.io/promises/reference/then.html" class="external-link">promises::then()</a></code>.
-Using this argument requires the <a href="https://CRAN.R-project.org/package=promises" class="external-link"><span class="pkg">promises</span></a> package.</p></dd>
+<code>onFulfilled</code> and <code>onRejected</code> of <code><a href="https://rstudio.github.io/promises/reference/then.html" class="external-link">promises::then()</a></code>. Using this argument
+requires the <a href="https://CRAN.R-project.org/package=promises" class="external-link"><span class="pkg">promises</span></a> package.</p></dd>
 
 
 <dt id="arg--compute">.compute<a class="anchor" aria-label="anchor" href="#arg--compute"></a></dt>
@@ -103,32 +103,31 @@ to use (each compute profile has its own independent set of daemons).</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A ‘mirai_map’ (list of ‘mirai’ objects).</p>
+    <p>A 'mirai_map' (list of 'mirai' objects).</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Sends each application of function <code>.f</code> on an element of <code>.x</code>
-(or row of <code>.x</code>) for computation in a separate <code><a href="mirai.html">mirai</a></code> call.
-If <code>.x</code> is named, names are preserved.</p>
+    <p>Sends each application of function <code>.f</code> on an element of <code>.x</code> (or row of
+<code>.x</code>) for computation in a separate <code><a href="mirai.html">mirai()</a></code> call. If <code>.x</code> is named, names
+are preserved.</p>
 <p>This simple and transparent behaviour is designed to make full use of
 <span class="pkg">mirai</span> scheduling to minimise overall execution time.</p>
-<p>Facilitates recovery from partial failure by returning all
-‘miraiError’ / ‘errorValue’ as the case may be, thus allowing
-only the failures to be re-run.</p>
-<p>This function requires daemons to have previously been set, and will error if
-not.</p>
+<p>Facilitates recovery from partial failure by returning all 'miraiError' /
+'errorValue' as the case may be, thus allowing only failures to be re-run.</p>
+<p>This function requires daemons to have previously been set, and will error
+otherwise.</p>
     </div>
     <div class="section level2">
     <h2 id="collection-options">Collection Options<a class="anchor" aria-label="anchor" href="#collection-options"></a></h2>
 
 
 
-<p><code>x[]</code> collects the results of a ‘mirai_map’ <code>x</code> and returns
-a list. This will wait for all asynchronous operations to complete if still
-in progress, blocking but user-interruptible.</p>
+<p><code>x[]</code> collects the results of a 'mirai_map' <code>x</code> and returns a list. This will
+wait for all asynchronous operations to complete if still in progress,
+blocking but user-interruptible.</p>
 <p><code>x[.flat]</code> collects and flattens map results to a vector, checking that
-they are of the same type to avoid coercion. Note: errors if an
-‘errorValue’ has been returned or results are of differing type.</p>
+they are of the same type to avoid coercion. Note: errors if an 'errorValue'
+has been returned or results are of differing type.</p>
 <p><code>x[.progress]</code> collects map results whilst showing a progress bar from
 the <a href="https://CRAN.R-project.org/package=cli" class="external-link"><span class="pkg">cli</span></a> package, if installed, with completion percentage and ETA,
 or else a simple text progress indicator. Note: if the map operation
@@ -144,21 +143,19 @@ progress indicator.</p>
 
 
 
-<p>If <code>.x</code> is a matrix or dataframe (or other object with ‘dim’
-attributes), <em>multiple</em> map is performed over its <strong>rows</strong>.
-Character row names are preserved as names of the output.</p>
-<p>This allows map over 2 or more arguments, and <code>.f</code> should accept at
-least as many arguments as there are columns. If the dataframe has names, or
-the matrix column dimnames, named arguments are provided to <code>.f</code>.</p>
-<p>To map over <strong>columns</strong> instead, first wrap a dataframe in
-<code><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></code>, or transpose a matrix using <code><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></code>.</p>
+<p>If <code>.x</code> is a matrix or dataframe (or other object with 'dim' attributes),
+<em>multiple</em> map is performed over its <strong>rows</strong>. Character row names are
+preserved as names of the output.</p>
+<p>This allows map over 2 or more arguments, and <code>.f</code> should accept at least as
+many arguments as there are columns. If the dataframe has names, or the
+matrix column dimnames, named arguments are provided to <code>.f</code>.</p>
+<p>To map over <strong>columns</strong> instead, first wrap a dataframe in <code><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list()</a></code>, or
+transpose a matrix using <code><a href="https://rdrr.io/r/base/t.html" class="external-link">t()</a></code>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="co"># Only run examples in interactive R sessions</span></span></span>
-<span class="r-in"><span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="daemons.html">daemons</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># perform and collect mirai map</span></span></span>
@@ -210,9 +207,9 @@ the matrix column dimnames, named arguments are provided to <code>.f</code>.</p>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="fu">mirai_map</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span>, <span class="st">"a"</span>, <span class="fl">3</span><span class="op">)</span>, <span class="va">sum</span><span class="op">)</span><span class="op">[</span><span class="va">.stop</span><span class="op">]</span>, error <span class="op">=</span> <span class="va">identity</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="daemons.html">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive() &amp;&amp; requireNamespace("promises", quietly = TRUE)</span></span></span>
 <span class="r-in"><span><span class="co"># promises example that outputs the results, including errors, to the console</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"promises"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="daemons.html">daemons</a></span><span class="op">(</span><span class="fl">1</span>, dispatcher <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ml</span> <span class="op">&lt;-</span> <span class="fu">mirai_map</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fl">1</span><span class="op">:</span><span class="fl">30</span>,</span></span>
@@ -223,9 +220,6 @@ the matrix column dimnames, named arguments are provided to <code>.f</code>.</p>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
