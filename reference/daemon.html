@@ -15,7 +15,7 @@ unless deploying manually on remote resources."><meta property="og:image" conten
 
     <a class="navbar-brand me-2" href="../index.html">mirai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,13 +27,12 @@ unless deploying manually on remote resources."><meta property="og:image" conten
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/v1-daemons.html">1. Daemons</a></li>
-    <li><a class="dropdown-item" href="../articles/v2-map.html">2. Async Parallel Map</a></li>
-    <li><a class="dropdown-item" href="../articles/v3-promises.html">3. Promises - Shiny and Plumber</a></li>
-    <li><a class="dropdown-item" href="../articles/v4-serialization.html">4. Serialization - Arrow, ADBC, polars, torch</a></li>
-    <li><a class="dropdown-item" href="../articles/v5-parallel.html">5. Mirai Clusters - Base R</a></li>
-    <li><a class="dropdown-item" href="../articles/v6-packages.html">6. Guidance for Package Authors</a></li>
-    <li><a class="dropdown-item" href="../articles/v7-community.html">7. Community FAQs</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/mirai-map.html">Mirai Map</a></li>
+    <li><a class="dropdown-item" href="../articles/mirai-promises.html">Promises - Shiny and Plumber</a></li>
+    <li><a class="dropdown-item" href="../articles/mirai-serialization.html">Serialization - Arrow, ADBC, polars, torch</a></li>
+    <li><a class="dropdown-item" href="../articles/mirai-xparallel.html">Communications Backend for R</a></li>
+    <li><a class="dropdown-item" href="../articles/packages.html">For Package Authors</a></li>
+    <li><a class="dropdown-item" href="../articles/questions.html">Community FAQs</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -63,7 +62,7 @@ unless deploying manually on remote resources.</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">daemon</span><span class="op">(</span></span>
 <span>  <span class="va">url</span>,</span>
-<span>  dispatcher <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  dispatcher <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  <span class="va">...</span>,</span>
 <span>  asyncdial <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  autoexit <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -89,7 +88,7 @@ port to connect to, e.g. 'tcp://hostname:5555' or
 
 
 <dt id="arg-dispatcher">dispatcher<a class="anchor" aria-label="anchor" href="#arg-dispatcher"></a></dt>
-<dd><p>[default FALSE] logical value, which should be set to
+<dd><p>[default TRUE] logical value, which should be set to
 TRUE if using dispatcher and FALSE otherwise.</p></dd>
 
 
@@ -108,10 +107,10 @@ can mask potential connection issues.</p></dd>
 
 <dt id="arg-autoexit">autoexit<a class="anchor" aria-label="anchor" href="#arg-autoexit"></a></dt>
 <dd><p>[default TRUE] logical value, whether the daemon should
-exit automatically when its socket connection ends. If a signal from the
-<span class="pkg">tools</span> package, such as <code><a href="https://rdrr.io/r/tools/pskill.html" class="external-link">tools::SIGINT</a></code>, or an equivalent integer
-value is supplied, this signal is additionally raised on exit (see
-'Persistence' section below).</p></dd>
+exit automatically when its socket connection ends. By default, the process
+ends immediately when the host process ends. Supply <code>NA</code> to have a daemon
+complete any tasks in progress before exiting (see 'Persistence' section
+below).</p></dd>
 
 
 <dt id="arg-cleanup">cleanup<a class="anchor" aria-label="anchor" href="#arg-cleanup"></a></dt>
@@ -160,7 +159,7 @@ certificate authority certificate chain and [ii] the empty string <code>""</code
 <dt id="arg-rs">rs<a class="anchor" aria-label="anchor" href="#arg-rs"></a></dt>
 <dd><p>[default NULL] the initial value of .Random.seed. This is set
 automatically using L'Ecuyer-CMRG RNG streams generated by the host process
-and should not be independently supplied.</p></dd>
+if applicable, and should not be independently supplied.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -182,13 +181,13 @@ distributes tasks to all available daemons.</p>
 
 
 <p>The <code>autoexit</code> argument governs persistence settings for the daemon. The
-default TRUE ensures that it will exit cleanly once its socket connection
-has ended.</p>
-<p>Instead of TRUE, supplying a signal from the <span class="pkg">tools</span> package, such as
-<code><a href="https://rdrr.io/r/tools/pskill.html" class="external-link">tools::SIGINT</a></code>, or an equivalent integer value, sets this signal to be
-raised when the socket connection ends. For instance, supplying SIGINT allows
-a potentially more immediate exit by interrupting any ongoing evaluation
-rather than letting it complete.</p>
+default TRUE ensures that it will exit as soon as its socket connection
+with the host process drops.</p>
+<p>Supplying <code>NA</code> will allow a daemon to exit cleanly once its socket connection
+with the host process drops, as soon as it has finished any task that is
+currently in progress. This may be useful if the daemon is performing some
+side effect such as writing files to disk, and the result is not required in
+the host process.</p>
 <p>Setting to FALSE allows the daemon to persist indefinitely even when there is
 no longer a socket connection. This allows a host session to end and a new
 session to connect at the URL where the daemon is dialled in. Daemons must be
@@ -207,7 +206,7 @@ signals to all connected daemons.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
   </div></footer></body></html>

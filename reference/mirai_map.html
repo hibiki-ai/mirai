@@ -11,7 +11,7 @@ over the rows of a dataframe or matrix."><meta property="og:image" content="http
 
     <a class="navbar-brand me-2" href="../index.html">mirai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,13 +23,12 @@ over the rows of a dataframe or matrix."><meta property="og:image" content="http
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/v1-daemons.html">1. Daemons</a></li>
-    <li><a class="dropdown-item" href="../articles/v2-map.html">2. Async Parallel Map</a></li>
-    <li><a class="dropdown-item" href="../articles/v3-promises.html">3. Promises - Shiny and Plumber</a></li>
-    <li><a class="dropdown-item" href="../articles/v4-serialization.html">4. Serialization - Arrow, ADBC, polars, torch</a></li>
-    <li><a class="dropdown-item" href="../articles/v5-parallel.html">5. Mirai Clusters - Base R</a></li>
-    <li><a class="dropdown-item" href="../articles/v6-packages.html">6. Guidance for Package Authors</a></li>
-    <li><a class="dropdown-item" href="../articles/v7-community.html">7. Community FAQs</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/mirai-map.html">Mirai Map</a></li>
+    <li><a class="dropdown-item" href="../articles/mirai-promises.html">Promises - Shiny and Plumber</a></li>
+    <li><a class="dropdown-item" href="../articles/mirai-serialization.html">Serialization - Arrow, ADBC, polars, torch</a></li>
+    <li><a class="dropdown-item" href="../articles/mirai-xparallel.html">Communications Backend for R</a></li>
+    <li><a class="dropdown-item" href="../articles/packages.html">For Package Authors</a></li>
+    <li><a class="dropdown-item" href="../articles/questions.html">Community FAQs</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -146,6 +145,23 @@ matrix column dimnames, named arguments are provided to <code>.f</code>.</p>
 <p>To map over <strong>columns</strong> instead, first wrap a dataframe in <code><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list()</a></code>, or
 transpose a matrix using <code><a href="https://rdrr.io/r/base/t.html" class="external-link">t()</a></code>.</p>
     </div>
+    <div class="section level2">
+    <h2 id="nested-maps">Nested Maps<a class="anchor" aria-label="anchor" href="#nested-maps"></a></h2>
+
+
+
+<p>At times you way wish to run maps within maps. To do this, the function
+provided to the outer map needs to include a call to <code><a href="daemons.html">daemons()</a></code> to set
+daemons used by the inner map. To guard against inadvertently spawning an
+excessive number of daemons on the same machine, attempting to launch local
+daemons within a map using <code>daemons(n)</code> will error.</p>
+<p>A legitimate use of this pattern however is when the outer daemons are
+launched on remote machines, and you then wish to launch daemons locally on
+each of those machines. In this case, use the following solution: instead of
+a single call to <code>daemons(n)</code> make 2 separate calls to
+<code>daemons(url = local_url()); launch_local(n)</code>. This is equivalent, and is
+permitted from within a map.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -227,7 +243,7 @@ transpose a matrix using <code><a href="https://rdrr.io/r/base/t.html" class="ex
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
   </div></footer></body></html>
