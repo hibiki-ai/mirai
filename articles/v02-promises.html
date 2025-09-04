@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">mirai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.5.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,8 +46,9 @@
     <li><a class="dropdown-item" href="../articles/v02-promises.html">Promises - Shiny and Plumber</a></li>
     <li><a class="dropdown-item" href="../articles/v03-serialization.html">Serialization - Arrow, ADBC, polars, torch</a></li>
     <li><a class="dropdown-item" href="../articles/v04-parallel.html">Communications Backend for R</a></li>
-    <li><a class="dropdown-item" href="../articles/v05-packages.html">For Package Authors</a></li>
-    <li><a class="dropdown-item" href="../articles/v06-questions.html">Community FAQs</a></li>
+    <li><a class="dropdown-item" href="../articles/v05-opentelemetry.html">OpenTelemetry</a></li>
+    <li><a class="dropdown-item" href="../articles/v06-packages.html">For Package Authors</a></li>
+    <li><a class="dropdown-item" href="../articles/v07-questions.html">Community FAQs</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -93,8 +94,9 @@
 </h3>
 <p><code>mirai</code> supplies its own <code><a href="https://rstudio.github.io/promises/reference/is.promise.html" class="external-link">as.promise()</a></code> method,
 allowing it to be readily converted to a promise from the <a href="https://rstudio.github.io/promises/" class="external-link"><code>promises</code></a>
-package. See the vignettes for the promises package for a full
-treatment.</p>
+package. The <a href="https://rstudio.github.io/promises/" class="external-link">articles</a>
+for the promises package provide a full guide for the use of promises,
+including with Shiny.</p>
 <p>A mirai may be piped directly using the promise pipe
 <code>%...&gt;%</code>, which implicitly calls <code><a href="https://rstudio.github.io/promises/reference/is.promise.html" class="external-link">as.promise()</a></code>
 on it. Similarly, all promise-aware functions such as
@@ -108,15 +110,14 @@ promise object.</p>
 promise instead registers an action to be taken as soon as a mirai
 resolves. This will happen automatically if the R session is idle at the
 top prompt, or if within a loop or function where
-<code><a href="https://r-lib.github.io/later/reference/run_now.html" class="external-link">later::run_now()</a></code> is being called periodically to service
+<code><a href="https://later.r-lib.org/reference/run_now.html" class="external-link">later::run_now()</a></code> is being called periodically to service
 promise actions (e.g. in Shiny).</p>
 <p>For a mirai promise, the mirai’s value is passed to the
 <code>onFulfilled</code> argument of <code><a href="https://rstudio.github.io/promises/reference/then.html" class="external-link">promises::then()</a></code> if no
 error has occurred, and the mirai’s <code>errorValue</code> is passed to
 the <code>onRejected</code> argument if an error has occured.</p>
 <p>Promises converted from mirai are next-generation, event-driven
-promises, developed in collaboration with Joe Cheng (creator of
-Shiny).</p>
+promises.</p>
 <ul>
 <li>Promise actions are triggered as soon as each mirai resolves,
 without time-polling for completion as a <code><a href="https://rstudio.github.io/promises/reference/future_promise.html" class="external-link">future_promise()</a></code>
@@ -157,32 +158,9 @@ method. It resolves when the entire map operation completes or at least
 one mirai in the map is rejected.</p>
 </div>
 <div class="section level3">
-<h3 id="the-one-million-promises-challenge">2. The One Million Promises Challenge<a class="anchor" aria-label="anchor" href="#the-one-million-promises-challenge"></a>
+<h3 id="shiny-extendedtask-introduction">2. Shiny ExtendedTask: Introduction<a class="anchor" aria-label="anchor" href="#shiny-extendedtask-introduction"></a>
 </h3>
-<p>The code below is taken from the challenge to launch and collect one
-million promises. For illustration, the example is scaled down to ten
-thousand.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mirai.r-lib.org">mirai</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">8</span>, dispatcher <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 8</span></span>
-<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
-<span><span class="va">start</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mirai_map.html">mirai_map</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10000</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span>, .promise <span class="op">=</span> \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">r</span> <span class="op">&lt;&lt;-</span> <span class="va">r</span> <span class="op">+</span> <span class="va">x</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="va">start</span></span>
-<span><span class="co">#&gt; Time difference of 3.19889 secs</span></span>
-<span><span class="fu">later</span><span class="fu">::</span><span class="fu"><a href="https://r-lib.github.io/later/reference/run_now.html" class="external-link">run_now</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">r</span></span>
-<span><span class="co">#&gt; [1] 50005000</span></span>
-<span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0</span></span></code></pre></div>
-<p>The one million promises challenge took 6 mins 25 secs to complete
-using an Intel i7 11th gen mobile processor with 16GB RAM.</p>
-</div>
-<div class="section level3">
-<h3 id="shiny-extendedtask-introduction">3. Shiny ExtendedTask: Introduction<a class="anchor" aria-label="anchor" href="#shiny-extendedtask-introduction"></a>
-</h3>
-<p>mirai is an asynchronous backend to scale <a href="https://shiny.posit.co/" class="external-link">Shiny</a> applications. Depending on the
+<p>mirai is the primary asynchronous backend for scaling <a href="https://shiny.posit.co/" class="external-link">Shiny</a> applications. Depending on the
 options supplied to <code><a href="../reference/daemons.html">daemons()</a></code>, mirai tasks may be
 distributed across parallel processes locally or across the network.</p>
 <p>Shiny ExtendedTask allows the creation of scalable Shiny apps, which
@@ -197,7 +175,7 @@ the plot greyed out until the computation is complete.</p>
 <code>onStop()</code> may be used to automatically shut them down when
 the app exits.</p>
 </blockquote>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/bslib/" class="external-link">bslib</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mirai.r-lib.org">mirai</a></span><span class="op">)</span></span>
@@ -242,7 +220,7 @@ based.</em></p>
 button which is disabled during computation to prevent additional
 clicks.</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rstudio.github.io/bslib/reference/input_task_button.html" class="external-link">input_task_button</a></span><span class="op">(</span><span class="st">"btn"</span>, <span class="st">"Plot uniform distribution"</span><span class="op">)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>In the server, create an ExtendedTask object by calling
@@ -250,7 +228,7 @@ clicks.</li>
 <code>...</code> arguments to <code><a href="../reference/mirai.html">mirai()</a></code>, and bind it to the
 button created in (1).</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">task</span> <span class="op">&lt;-</span> <span class="va">ExtendedTask</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
 <span>  <span class="kw">function</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">}</span>, <span class="va">...</span><span class="op">)</span></span>
 <span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rstudio.github.io/bslib/reference/bind_task_button.html" class="external-link">bind_task_button</a></span><span class="op">(</span><span class="st">"btn"</span><span class="op">)</span></span></code></pre></div>
@@ -259,17 +237,17 @@ button created in (1).</li>
 the ExtendedTask, passing in named arguments to the anonymous function
 (and hence the mirai) above.</li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">observeEvent</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn</span>, <span class="va">task</span><span class="op">$</span><span class="fu">invoke</span><span class="op">(</span>x <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">n</span>, y <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">delay</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>In the server, create a render function for the output, which
 consumes the result of the ExtendedTask.</li>
 </ol>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">task</span><span class="op">$</span><span class="fu">result</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="shiny-extendedtask-cancellation">4. Shiny ExtendedTask: Cancellation<a class="anchor" aria-label="anchor" href="#shiny-extendedtask-cancellation"></a>
+<h3 id="shiny-extendedtask-cancellation">3. Shiny ExtendedTask: Cancellation<a class="anchor" aria-label="anchor" href="#shiny-extendedtask-cancellation"></a>
 </h3>
 <p>The app below is a demonstration of mirai’s cancellation capability.
 Cancellation is performed in the same way irrespective of where the
@@ -282,7 +260,7 @@ and allow any queued plots to continue processing.</p>
 <p>It works by assigning a reference to the mirai created in the
 <code>extendedTask$new()</code> method, which can then be passed to
 <code><a href="../reference/stop_mirai.html">stop_mirai()</a></code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/bslib/" class="external-link">bslib</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mirai.r-lib.org">mirai</a></span><span class="op">)</span></span>
@@ -338,7 +316,7 @@ and allow any queued plots to continue processing.</p>
 based.</em></p>
 </div>
 <div class="section level3">
-<h3 id="shiny-extendedtask-generative-art">5. Shiny ExtendedTask: Generative Art<a class="anchor" aria-label="anchor" href="#shiny-extendedtask-generative-art"></a>
+<h3 id="shiny-extendedtask-generative-art">4. Shiny ExtendedTask: Generative Art<a class="anchor" aria-label="anchor" href="#shiny-extendedtask-generative-art"></a>
 </h3>
 <p>The following app produces pretty spiral patterns.</p>
 <p>The user can add multiple plots, making use of Shiny modules, each
@@ -350,7 +328,7 @@ start to be generated until one of the other plots has finished.</p>
 <p>By wrapping the <code>runApp()</code> call in
 <code>with(daemons(...), ...)</code> the daemons are set up for the
 duration of the app, exiting automatically when the app is stopped.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mirai.r-lib.org">mirai</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/bslib/" class="external-link">bslib</a></span><span class="op">)</span></span>
@@ -437,7 +415,7 @@ calling environment to the mirai.</p>
 button which is disabled during computation to prevent additional
 clicks.</li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rstudio.github.io/bslib/reference/input_task_button.html" class="external-link">input_task_button</a></span><span class="op">(</span><span class="fu">ns</span><span class="op">(</span><span class="st">"resample"</span><span class="op">)</span>, <span class="st">"Resample"</span><span class="op">)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>In the server, create an ExtendedTask object by calling
@@ -446,7 +424,7 @@ clicks.</li>
 button created in (1). These are passed through to the mirai by the use
 of <code><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment()</a></code>.</li>
 </ol>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">task</span> <span class="op">&lt;-</span> <span class="va">ExtendedTask</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
 <span>  <span class="kw">function</span><span class="op">(</span><span class="va">time</span>, <span class="va">run</span><span class="op">)</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="fu">run</span><span class="op">(</span><span class="va">time</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rstudio.github.io/bslib/reference/bind_task_button.html" class="external-link">bind_task_button</a></span><span class="op">(</span><span class="st">"resample"</span><span class="op">)</span></span></code></pre></div>
@@ -455,17 +433,17 @@ of <code><a href="https://rdrr.io/r/base/environment.html" class="external-link"
 the ExtendedTask, supplying the arguments to the anonymous function
 above.</li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">observeEvent</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">resample</span>, <span class="va">task</span><span class="op">$</span><span class="fu">invoke</span><span class="op">(</span><span class="va">calc_time</span>, <span class="va">run_task</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>In the server, create a render function for the output, which
 consumes the result of the ExtendedTask.</li>
 </ol>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="fu">plot_result</span><span class="op">(</span><span class="va">task</span><span class="op">$</span><span class="fu">result</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="shiny-extendedtask-mirai-map">6. Shiny ExtendedTask: mirai map<a class="anchor" aria-label="anchor" href="#shiny-extendedtask-mirai-map"></a>
+<h3 id="shiny-extendedtask-mirai-map">5. Shiny ExtendedTask: mirai map<a class="anchor" aria-label="anchor" href="#shiny-extendedtask-mirai-map"></a>
 </h3>
 <p>A <code>mirai_map</code> also has an <code><a href="https://rstudio.github.io/promises/reference/is.promise.html" class="external-link">as.promise()</a></code>
 method, which allows it to be used directly in a Shiny ExtendedTask. It
@@ -474,7 +452,7 @@ mirai in the map is rejected.</p>
 <p>This example, uses <code><a href="../reference/mirai_map.html">mirai_map()</a></code> to perform multiple
 calculations simultaneously in multiple daemons, returning the results
 asynchronously.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/bslib/" class="external-link">bslib</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mirai.r-lib.org">mirai</a></span><span class="op">)</span></span>
@@ -519,7 +497,7 @@ asynchronously.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>, <span class="fu">runApp</span><span class="op">(</span><span class="va">app</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="shiny-async-coin-flips">7. Shiny Async: Coin Flips<a class="anchor" aria-label="anchor" href="#shiny-async-coin-flips"></a>
+<h3 id="shiny-async-coin-flips">6. Shiny Async: Coin Flips<a class="anchor" aria-label="anchor" href="#shiny-async-coin-flips"></a>
 </h3>
 <p>The below example demonstrates how to integrate a
 <code><a href="../reference/mirai_map.html">mirai_map()</a></code> operation into a Shiny app in an observer,
@@ -527,7 +505,7 @@ without using ExtendedTask.</p>
 <p>By specifying the ‘.promise’ argument, this registers a promise
 action against each mapped operation. These can then be used to update
 reactive values or otherwise interact with the Shiny app.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mirai.r-lib.org">mirai</a></span><span class="op">)</span></span>
 <span></span>
@@ -588,13 +566,13 @@ reactive values or otherwise interact with the Shiny app.</p>
 Landau for use of <code>crew</code> with Shiny. Please see <a href="https://wlandau.github.io/crew/articles/shiny.html" class="external-link uri">https://wlandau.github.io/crew/articles/shiny.html</a>.</em></p>
 </div>
 <div class="section level3">
-<h3 id="shiny-async-progress-bar">8. Shiny Async: Progress Bar<a class="anchor" aria-label="anchor" href="#shiny-async-progress-bar"></a>
+<h3 id="shiny-async-progress-bar">7. Shiny Async: Progress Bar<a class="anchor" aria-label="anchor" href="#shiny-async-progress-bar"></a>
 </h3>
 <p>The below example uses a <code><a href="../reference/mirai_map.html">mirai_map()</a></code> operation in an
 observer to update a Shiny progress bar with custom messages, and also
 to update a reactive value once the entire map operation has completed
 (asynchronously).</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mirai.r-lib.org">mirai</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/promises/" class="external-link">promises</a></span><span class="op">)</span></span>
@@ -654,7 +632,7 @@ to update a reactive value once the entire map operation has completed
 <p><em>This example adapts a contribution from Davide Magno.</em></p>
 </div>
 <div class="section level3">
-<h3 id="plumber-get-endpoint">9. Plumber GET Endpoint<a class="anchor" aria-label="anchor" href="#plumber-get-endpoint"></a>
+<h3 id="plumber-get-endpoint">8. Plumber GET Endpoint<a class="anchor" aria-label="anchor" href="#plumber-get-endpoint"></a>
 </h3>
 <p>mirai may be used as an asynchronous backend for <a href="https://www.rplumber.io/" class="external-link"><code>plumber</code></a> pipelines.</p>
 <p>In this example, the plumber router code is run in a daemon process
@@ -665,11 +643,10 @@ outer <code><a href="../reference/mirai.html">mirai()</a></code> call will suffi
 (simulating an expensive computation) and simply returns the ‘msg’
 request header together with a timestamp and the process ID of the
 process it is run on.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mirai.r-lib.org">mirai</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">1L</span>, dispatcher <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1</span></span>
 <span></span>
 <span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.rplumber.io" class="external-link">plumber</a></span><span class="op">)</span></span>
@@ -707,7 +684,7 @@ process it is run on.</p>
 <p>Here, all 8 requests are submitted at once, but we note that that
 responses have differing timestamps as only 4 can be processed at any
 one time (limited by the number of daemons set).</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nanonext.r-lib.org" class="external-link">nanonext</a></span><span class="op">)</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span></span>
 <span>  <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>,</span>
@@ -718,45 +695,43 @@ one time (limited by the number of daemons set).</p>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://nanonext.r-lib.org/reference/collect_aio.html" class="external-link">collect_aio</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:39\"],\"msg\":[\"1\"],\"pid\":[45605]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:34\"],\"msg\":[\"1\"],\"pid\":[15061]}"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:40\"],\"msg\":[\"2\"],\"pid\":[45607]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:34\"],\"msg\":[\"2\"],\"pid\":[15063]}"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:40\"],\"msg\":[\"3\"],\"pid\":[45603]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:34\"],\"msg\":[\"3\"],\"pid\":[15079]}"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[4]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:39\"],\"msg\":[\"4\"],\"pid\":[45610]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:34\"],\"msg\":[\"4\"],\"pid\":[15073]}"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[5]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:39\"],\"msg\":[\"5\"],\"pid\":[45607]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:35\"],\"msg\":[\"5\"],\"pid\":[15073]}"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[6]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:40\"],\"msg\":[\"6\"],\"pid\":[45610]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:35\"],\"msg\":[\"6\"],\"pid\":[15079]}"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[7]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:39\"],\"msg\":[\"7\"],\"pid\":[45603]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:35\"],\"msg\":[\"7\"],\"pid\":[15061]}"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[8]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:40\"],\"msg\":[\"8\"],\"pid\":[45605]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:35\"],\"msg\":[\"8\"],\"pid\":[15063]}"</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="plumber-post-endpoint">10. Plumber POST Endpoint<a class="anchor" aria-label="anchor" href="#plumber-post-endpoint"></a>
+<h3 id="plumber-post-endpoint">9. Plumber POST Endpoint<a class="anchor" aria-label="anchor" href="#plumber-post-endpoint"></a>
 </h3>
 <p>This is the equivalent using a POST endpoint, accepting a JSON
 instruction sent as request data.</p>
 <p>Note that <code>req$postBody</code> should always be accessed in the
 router process and passed in as an argument to the ‘mirai’, as this is
 retrieved using a connection that is not serializable.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mirai.r-lib.org">mirai</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">1L</span>, dispatcher <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1</span></span>
 <span></span>
 <span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mirai.html">mirai</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.rplumber.io" class="external-link">plumber</a></span><span class="op">)</span></span>
@@ -793,7 +768,7 @@ retrieved using a connection that is not serializable.</p>
 <span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
 <p>Querying the endpoint produces the same set of outputs as the
 previous example.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nanonext.r-lib.org" class="external-link">nanonext</a></span><span class="op">)</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span></span>
 <span>  <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>,</span>
@@ -805,31 +780,30 @@ previous example.</p>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://nanonext.r-lib.org/reference/collect_aio.html" class="external-link">collect_aio</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:43\"],\"msg\":[\"1\"],\"pid\":[45889]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:39\"],\"msg\":[\"1\"],\"pid\":[15136]}"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:43\"],\"msg\":[\"2\"],\"pid\":[45882]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:39\"],\"msg\":[\"2\"],\"pid\":[15138]}"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:43\"],\"msg\":[\"3\"],\"pid\":[45886]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:39\"],\"msg\":[\"3\"],\"pid\":[15154]}"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[4]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:44\"],\"msg\":[\"4\"],\"pid\":[45884]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:39\"],\"msg\":[\"4\"],\"pid\":[15148]}"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[5]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:43\"],\"msg\":[\"5\"],\"pid\":[45884]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:40\"],\"msg\":[\"5\"],\"pid\":[15136]}"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[6]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:44\"],\"msg\":[\"6\"],\"pid\":[45882]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:40\"],\"msg\":[\"6\"],\"pid\":[15148]}"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[7]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:44\"],\"msg\":[\"7\"],\"pid\":[45889]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:40\"],\"msg\":[\"7\"],\"pid\":[15138]}"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[8]]</span></span>
-<span><span class="co">#&gt; [1] "{\"time\":[\"2025-06-24 21:29:44\"],\"msg\":[\"8\"],\"pid\":[45886]}"</span></span>
+<span><span class="co">#&gt; [1] "{\"time\":[\"2025-08-06 11:43:40\"],\"msg\":[\"8\"],\"pid\":[15154]}"</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/daemons.html">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
