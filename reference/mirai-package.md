@@ -1,12 +1,14 @@
 # mirai: Minimalist Async Evaluation Framework for R
 
-Designed for simplicity, a 'mirai' evaluates an R expression
-asynchronously, locally or distributed over the network. Built on
-'nanonext' and 'NNG' for modern networking and concurrency, scales
-efficiently to millions of tasks over thousands of parallel processes.
-Provides optimal scheduling over fast 'IPC', TCP, and TLS connections,
-integrating with SSH or cluster managers. Implements event-driven
-promises for reactive programming, and supports custom serialization for
+*moving already*  
+  
+Evaluates R expressions asynchronously and in parallel, locally or
+distributed across networks. An official parallel cluster type for R.
+Built on 'nanonext' and 'NNG', its non-polling, event-driven
+architecture scales from a laptop to thousands of processes across
+high-performance computing clusters and cloud platforms. Features FIFO
+scheduling with task cancellation, promises for reactive programming,
+'OpenTelemetry' distributed tracing, and custom serialization for
 cross-language data types.
 
 ## Notes
@@ -16,9 +18,9 @@ communications is platform-dependent: abstract Unix domain sockets on
 Linux, Unix domain sockets on MacOS, Solaris and other POSIX platforms,
 and named pipes on Windows.
 
-This may be overriden, if desired, by specifying 'url' in the
-[`daemons()`](https://mirai.r-lib.org/reference/daemons.md) interface
-and launching daemons using
+This may be overridden by specifying 'url' in
+[`daemons()`](https://mirai.r-lib.org/reference/daemons.md) and
+launching daemons using
 [`launch_local()`](https://mirai.r-lib.org/reference/launch_local.md).
 
 ## OpenTelemetry

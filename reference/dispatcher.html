@@ -13,7 +13,7 @@ directly."><meta property="og:image" content="https://mirai.r-lib.org/logo.png">
 
     <a class="navbar-brand me-2" href="../index.html">mirai</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.5.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +47,6 @@ directly."><meta property="og:image" content="https://mirai.r-lib.org/logo.png">
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/r-lib/mirai/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
-     <a href="https://deepwiki.com/r-lib/mirai" class="external-link"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
 
   </div>
 </nav><div class="container template-reference-topic" id="container">
@@ -67,7 +66,7 @@ directly.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dispatcher</span><span class="op">(</span><span class="va">host</span>, url <span class="op">=</span> <span class="cn">NULL</span>, n <span class="op">=</span> <span class="fl">0L</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dispatcher</span><span class="op">(</span><span class="va">host</span>, url <span class="op">=</span> <span class="cn">NULL</span>, n <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -75,39 +74,27 @@ directly.</p>
 
 
 <dl><dt id="arg-host">host<a class="anchor" aria-label="anchor" href="#arg-host"></a></dt>
-<dd><p>the character URL dispatcher should dial in to, typically an IPC
-address.</p></dd>
+<dd><p>(character) URL to dial into, typically an IPC address.</p></dd>
 
 
 <dt id="arg-url">url<a class="anchor" aria-label="anchor" href="#arg-url"></a></dt>
-<dd><p>the character URL dispatcher should listen at (and daemons should
-dial in to), including the port to connect to e.g. tcp://hostname:5555' or
-'tcp://10.75.32.70:5555'. Specify 'tls+tcp://' to use secure TLS
-connections.</p></dd>
+<dd><p>(character) URL to listen at for daemon connections, e.g.
+'tcp://hostname:5555'. Use 'tls+tcp://' for secure TLS.</p></dd>
 
 
 <dt id="arg-n">n<a class="anchor" aria-label="anchor" href="#arg-n"></a></dt>
-<dd><p>if specified, the integer number of daemons to be launched locally
-by the host process.</p></dd>
-
-
-<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>(optional) additional arguments passed through to <code><a href="daemon.html">daemon()</a></code> if
-launching daemons. These include <code>asyncdial</code>, <code>autoexit</code>, <code>cleanup</code>,
-<code>output</code>, <code>maxtasks</code>, <code>idletime</code>, <code>walltime</code> and <code>tlscert</code>.</p></dd>
+<dd><p>(integer) number of local daemons launched by host.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Invisible NULL.</p>
+    <p>Invisibly, an integer exit code: 0L for normal termination.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The network topology is such that a dispatcher acts as a gateway between the
-host and daemons, ensuring that tasks received from the host are dispatched
-on a FIFO basis for processing. Tasks are queued at the dispatcher to ensure
-tasks are only sent to daemons that can begin immediate execution of the
-task.</p>
+    <p>Dispatcher acts as a gateway between the host and daemons, dispatching tasks
+on a FIFO basis. Tasks are queued until a daemon is available for immediate
+execution.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
